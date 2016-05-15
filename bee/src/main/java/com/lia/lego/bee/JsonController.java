@@ -9,9 +9,10 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.lia.common.CommonObject;
 import com.lia.common.FileHelper;
+import com.lia.common.JsonHelper;
 import com.lia.common.Profile;
-import com.lia.common.mysql.CommonObject;
 import com.lia.lego.model.brickset.Inventory;
 import com.lia.lego.model.brickset.Set;
 
@@ -28,27 +29,31 @@ public class JsonController {
    
    public void convertSetFromRawToJson() throws Exception {
       RawController controller = new RawController();
-      List<Set> setList = controller.getSetList();
-      
-      JSONArray jsonArray = new JSONArray(setList);
+      List<CommonObject> setList = controller.getSetList();
+      String outputFile = _setFolder + "set.json";
+      /*JSONArray jsonArray = new JSONArray(setList);
 
       String output = jsonArray.toString(3);
-      String outputFile = _setFolder + "set.json";
-      FileHelper.INSTANCE.saveContent(output, outputFile);
+      
+      FileHelper.INSTANCE.saveContent(output, outputFile);*/
+      JsonHelper.INSTANCE.writeJson(setList, outputFile);
    }
    
    public void convertInventoryFromRawToJson() throws Exception {
       RawController controller = new RawController();
-      List<Set> setList = controller.getSetList();
-      for (Set set : setList) {
-         List<Inventory> inventoryList = controller.getInventoryListBySetFromFile(set);
+      List<CommonObject> setList = controller.getSetList();
+      for (CommonObject object : setList) {
+         Set set = (Set)object;
+         List<CommonObject> inventoryList = controller.getInventoryListBySetFromFile(set);
 
          if (inventoryList.size() > 0) {
-            JSONArray jsonArray = new JSONArray(inventoryList);
+            String outputFile = _inventoryFolder + set.getSetID() + ".json";
+            JsonHelper.INSTANCE.writeJson(inventoryList,outputFile);
+            /*JSONArray jsonArray = new JSONArray(inventoryList);
 
             String output = jsonArray.toString(3);
-            String outputFile = _inventoryFolder + set.getSetID() + ".json";
-            FileHelper.INSTANCE.saveContent(output, outputFile);
+            
+            FileHelper.INSTANCE.saveContent(output, outputFile);*/
          }
       }
    }

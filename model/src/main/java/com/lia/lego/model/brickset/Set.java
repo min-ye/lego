@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
-
-import com.lia.common.mysql.CommonObject;
 
 public class Set extends CommonObject {
    private String _setID = "";
@@ -155,7 +154,7 @@ public class Set extends CommonObject {
    }
    
    @Override
-   public String getFieldValue(String fieldName) throws Exception{
+   public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "SetID":
          return this._setID;
@@ -269,30 +268,30 @@ public class Set extends CommonObject {
    }
    
    @Override
-   public Map<String, String> exportFieldMap(){
+   public Map<String, String> exportPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("SetID", getFieldValueString(this._setID));
-      modelMap.put("Number", getFieldValueString(this._number));
-      modelMap.put("Variant", getFieldValueString(this._variant));
-      modelMap.put("Theme", getFieldValueString(this._theme));
-      modelMap.put("SubTheme", getFieldValueString(this._subTheme));
-      modelMap.put("Year", getFieldValueString(this._year));
-      modelMap.put("Name", getFieldValueString(this._name));
-      modelMap.put("Minifigs", getFieldValueString(this._minifigs));
-      modelMap.put("Pieces", getFieldValueString(this._pieces));
-      modelMap.put("UKPrice", getFieldValueString(this._priceUK));
-      modelMap.put("USPrice", getFieldValueString(this._priceUS));
-      modelMap.put("CAPrice", getFieldValueString(this._priceCA));
-      modelMap.put("EUPrice", getFieldValueString(this._priceEU));
-      modelMap.put("ImageURL", getFieldValueString(this._imageURL));
+      modelMap.put("SetID", getPropertyValueString(this._setID));
+      modelMap.put("Number", getPropertyValueString(this._number));
+      modelMap.put("Variant", getPropertyValueString(this._variant));
+      modelMap.put("Theme", getPropertyValueString(this._theme));
+      modelMap.put("SubTheme", getPropertyValueString(this._subTheme));
+      modelMap.put("Year", getPropertyValueString(this._year));
+      modelMap.put("Name", getPropertyValueString(this._name));
+      modelMap.put("Minifigs", getPropertyValueString(this._minifigs));
+      modelMap.put("Pieces", getPropertyValueString(this._pieces));
+      modelMap.put("UKPrice", getPropertyValueString(this._priceUK));
+      modelMap.put("USPrice", getPropertyValueString(this._priceUS));
+      modelMap.put("CAPrice", getPropertyValueString(this._priceCA));
+      modelMap.put("EUPrice", getPropertyValueString(this._priceEU));
+      modelMap.put("ImageURL", getPropertyValueString(this._imageURL));
 
       return modelMap;
    }
    
    @Override
-   public Map<String, String> exportKeyFieldMap(){
+   public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("SetID", getFieldValueString(this._setID));
+      modelMap.put("SetID", getPropertyValueString(this._setID));
 
       return modelMap;
    }
@@ -300,25 +299,25 @@ public class Set extends CommonObject {
    @Override
    public Map<String, String> exportValueFieldMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Number", getFieldValueString(this._number));
-      modelMap.put("Variant", getFieldValueString(this._variant));
-      modelMap.put("Theme", getFieldValueString(this._theme));
-      modelMap.put("SubTheme", getFieldValueString(this._subTheme));
-      modelMap.put("Year", getFieldValueString(this._year));
-      modelMap.put("Name", getFieldValueString(this._name));
-      modelMap.put("Minifigs", getFieldValueString(this._minifigs));
-      modelMap.put("Pieces", getFieldValueString(this._pieces));
-      modelMap.put("UKPrice", getFieldValueString(this._priceUK));
-      modelMap.put("USPrice", getFieldValueString(this._priceUS));
-      modelMap.put("CAPrice", getFieldValueString(this._priceCA));
-      modelMap.put("EUPrice", getFieldValueString(this._priceEU));
-      modelMap.put("ImageURL", getFieldValueString(this._imageURL));
+      modelMap.put("Number", getPropertyValueString(this._number));
+      modelMap.put("Variant", getPropertyValueString(this._variant));
+      modelMap.put("Theme", getPropertyValueString(this._theme));
+      modelMap.put("SubTheme", getPropertyValueString(this._subTheme));
+      modelMap.put("Year", getPropertyValueString(this._year));
+      modelMap.put("Name", getPropertyValueString(this._name));
+      modelMap.put("Minifigs", getPropertyValueString(this._minifigs));
+      modelMap.put("Pieces", getPropertyValueString(this._pieces));
+      modelMap.put("UKPrice", getPropertyValueString(this._priceUK));
+      modelMap.put("USPrice", getPropertyValueString(this._priceUS));
+      modelMap.put("CAPrice", getPropertyValueString(this._priceCA));
+      modelMap.put("EUPrice", getPropertyValueString(this._priceEU));
+      modelMap.put("ImageURL", getPropertyValueString(this._imageURL));
 
       return modelMap;
    }
    
    @Override
-   public ArrayList<String> fetchFieldName(){
+   public ArrayList<String> fetchPropertyName(){
       ArrayList<String> fieldNameList = new ArrayList<String>();
       fieldNameList.add("SetID");
       fieldNameList.add("Number");

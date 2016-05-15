@@ -15,6 +15,7 @@ import com.lia.common.Cookie;
 import com.lia.common.FileHelper;
 import com.lia.common.Profile;
 import com.lia.common.WebHelper;
+import com.lia.common.CommonObject;
 import com.lia.lego.model.brickset.Inventory;
 import com.lia.lego.model.brickset.Set;
 
@@ -63,10 +64,11 @@ public class RawController {
    }
 
    public void downloadInventoryRawToCSV() throws Exception {
-      List<Set> setList = getSetList();
+      List<CommonObject> setList = getSetList();
       int index = 1;
-      for (Set set : setList) {
+      for (CommonObject object : setList) {
          //if (set.getYear().equals("2009")) {
+            Set set = (Set)object;
             downloadInventoryBySet(set);
             System.out.println(String.valueOf(index));
             index++;
@@ -80,10 +82,10 @@ public class RawController {
       return IOUtils.toString(url);
    }
    
-   public List<Set> getSetList() throws Exception{
+   public List<CommonObject> getSetList() throws Exception{
       File root = new File(_setFolder);
       File[] multiFile = root.listFiles();
-      List<Set> setList = new ArrayList<Set>();
+      List<CommonObject> setList = new ArrayList<CommonObject>();
       for (File file : multiFile) {
          if (file.isFile() && file.toString().contains(".csv")) {
             System.out.println("processing " + file.toString());
@@ -95,9 +97,9 @@ public class RawController {
       return setList;
    }
 
-   public List<Inventory> getInventoryListBySetFromFile(Set set) throws Exception {
+   public List<CommonObject> getInventoryListBySetFromFile(Set set) throws Exception {
       String fileName = String.format("%s%s.csv", _inventoryFolder, set.getSetID());
-      List<Inventory> inventoryList = new ArrayList<Inventory>();
+      List<CommonObject> inventoryList = new ArrayList<CommonObject>();
       FileReader fileReader = new FileReader(fileName);
       BufferedReader bufferReader = new BufferedReader(fileReader);
       String line = "";

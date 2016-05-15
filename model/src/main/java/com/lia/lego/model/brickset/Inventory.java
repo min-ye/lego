@@ -2,11 +2,12 @@ package com.lia.lego.model.brickset;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
-import com.lia.common.mysql.CommonObject;
 
 public class Inventory extends CommonObject{
    private String _setNumber = "";
@@ -107,7 +108,7 @@ public class Inventory extends CommonObject{
    }
    
    @Override
-   public String getFieldValue(String fieldName) throws Exception{
+   public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "SetNumber":
          return this._setNumber;
@@ -191,26 +192,26 @@ public class Inventory extends CommonObject{
    }
    
    @Override
-   public Map<String, String> exportFieldMap(){
+   public Map<String, String> exportPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("SetNumber", getFieldValueString(this._setNumber));
-      modelMap.put("PartID", getFieldValueString(this._partID));
-      modelMap.put("Quantity", getFieldValueString(this._quantity));
-      modelMap.put("Colour", getFieldValueString(this._colour));
-      modelMap.put("Category", getFieldValueString(this._category));
-      modelMap.put("DesignID", getFieldValueString(this._designID));
-      modelMap.put("PartName", getFieldValueString(this._partName));
-      modelMap.put("ImageURL", getFieldValueString(this._imageUrl));
-      modelMap.put("SetCount", getFieldValueString(this._setCount));
+      modelMap.put("SetNumber", getPropertyValueString(this._setNumber));
+      modelMap.put("PartID", getPropertyValueString(this._partID));
+      modelMap.put("Quantity", getPropertyValueString(this._quantity));
+      modelMap.put("Colour", getPropertyValueString(this._colour));
+      modelMap.put("Category", getPropertyValueString(this._category));
+      modelMap.put("DesignID", getPropertyValueString(this._designID));
+      modelMap.put("PartName", getPropertyValueString(this._partName));
+      modelMap.put("ImageURL", getPropertyValueString(this._imageUrl));
+      modelMap.put("SetCount", getPropertyValueString(this._setCount));
 
       return modelMap;
    }
    
    @Override
-   public Map<String, String> exportKeyFieldMap(){
+   public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("SetNumber", getFieldValueString(this._setNumber));
-      modelMap.put("PartID", getFieldValueString(this._partID));
+      modelMap.put("SetNumber", getPropertyValueString(this._setNumber));
+      modelMap.put("PartID", getPropertyValueString(this._partID));
 
       return modelMap;
    }
@@ -219,19 +220,19 @@ public class Inventory extends CommonObject{
    public Map<String, String> exportValueFieldMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
       
-      modelMap.put("Quantity", getFieldValueString(this._quantity));
-      modelMap.put("Colour", getFieldValueString(this._colour));
-      modelMap.put("Category", getFieldValueString(this._category));
-      modelMap.put("DesignID", getFieldValueString(this._designID));
-      modelMap.put("PartName", getFieldValueString(this._partName));
-      modelMap.put("ImageURL", getFieldValueString(this._imageUrl));
-      modelMap.put("SetCount", getFieldValueString(this._setCount));
+      modelMap.put("Quantity", getPropertyValueString(this._quantity));
+      modelMap.put("Colour", getPropertyValueString(this._colour));
+      modelMap.put("Category", getPropertyValueString(this._category));
+      modelMap.put("DesignID", getPropertyValueString(this._designID));
+      modelMap.put("PartName", getPropertyValueString(this._partName));
+      modelMap.put("ImageURL", getPropertyValueString(this._imageUrl));
+      modelMap.put("SetCount", getPropertyValueString(this._setCount));
 
       return modelMap;
    }
 
    @Override
-   public ArrayList<String> fetchFieldName() {
+   public ArrayList<String> fetchPropertyName() {
       ArrayList<String> fieldNameArray = new ArrayList<String>();
       
       fieldNameArray.add("SetNumber");

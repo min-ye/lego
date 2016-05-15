@@ -2,7 +2,7 @@ package com.lia.lego.bee;
 
 import java.util.List;
 
-import com.lia.common.mysql.CommonObject;
+import com.lia.common.CommonObject;
 import com.lia.common.mysql.Configure;
 import com.lia.common.mysql.CreateHandler;
 import com.lia.common.mysql.DeleteHandler;
