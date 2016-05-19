@@ -356,4 +356,9 @@ public class Set extends CommonObject {
       
       return obj;
    }
+
+   @Override
+   public String fetchDescription() {
+      return String.format("%s(%s)", this._number, this._name);
+   }
 }

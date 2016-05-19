@@ -261,4 +261,9 @@ public class Inventory extends CommonObject{
       obj[8] = this._setCount;
       return obj;
    }
+
+   @Override
+   public String fetchDescription() {
+      return String.format("%s(%s)", this._partID, this._partName);
+   }
 }
