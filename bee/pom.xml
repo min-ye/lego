@@ -75,5 +75,16 @@
 			<artifactId>json</artifactId>
 			<version>20160212</version>
 		</dependency>
+		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.0.Final</version>
+        </dependency>
 	</dependencies>
+	<repositories>
+        <repository>
+            <id>jboss</id>
+            <url>http://repository.jboss.org/maven2</url>
+        </repository>
+    </repositories>
 </project>
