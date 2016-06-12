@@ -4,7 +4,7 @@
 
 <hibernate-mapping package="com.lia.lego.model">
    <class name="Theme" table="theme">
-      <id name="Key">
+      <id name="Key" column="`Key`" length="36" type="org.hibernate.type.UUIDCharType">
       </id>
       <property name="Name" column="Name" length="128" type="string"></property>
    </class>

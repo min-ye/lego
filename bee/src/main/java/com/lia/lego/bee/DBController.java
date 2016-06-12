@@ -68,7 +68,9 @@ public class DBController {
             session = factory.openSession();
             session.beginTransaction();
             UUID key = UUID.randomUUID();
-            Theme theme = new Theme("Theme", key.toString());
+            Theme theme = new Theme();
+            theme.setKey(key);
+            theme.setName("Theme");
             session.save(theme);
             session.getTransaction().commit();
          }

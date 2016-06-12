@@ -10,40 +10,34 @@ import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
 
 public class Theme extends CommonObject {
-   private String _name = "";
+   private String name = "";
+   private UUID key = null;
    
-   private String _key = null;
-
-   
-   public Theme(String name,
-                String key){
-      this._name = name;
-      this._key = key;
+   public Theme() {
+      
    }
    
-   public Theme(CommonObject commonObject){
-      Object[] object = commonObject.fetchObject();
-      this._name = convertToString(object[0]);
-      this._key = convertToString(object[1]);
+   public Theme(String name,
+                UUID key){
+      this.name = name;
+      this.key = key;
    }
    
    public String getName() {
-      return _name;
+      return name;
    }
 
    public void setName(String name) {
-      this._name = name;
+      this.name = name;
    }
 
    public UUID getKey() {
-      return UUID.fromString(_key);
+      return this.key;
    }
 
    public void setKey(UUID key) {
-      this._key = key.toString();
+      this.key = key;
    }
-
-
    
    @Override
    public String fetchObjectName(){
@@ -54,9 +48,9 @@ public class Theme extends CommonObject {
    public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "Name":
-         return this._name.toString();
+         return this.name.toString();
       case "Key":
-         return this._key;
+         return this.key.toString();
 
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
@@ -68,10 +62,10 @@ public class Theme extends CommonObject {
    {
       switch (fieldName) {
       case "Name":
-         this._name = fieldValue;
+         this.name = fieldValue;
          break;
       case "Key":
-         this._key = fieldValue;
+         this.key = convertToUUID(fieldValue);
          break;
 
       default:
@@ -88,8 +82,8 @@ public class Theme extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("Name", new FieldModel("String", this._name, false));
-      modelMap.put("Key", new FieldModel("UUID", this._key.toString(), true));
+      modelMap.put("Name", new FieldModel("String", this.name, false));
+      modelMap.put("Key", new FieldModel("UUID", this.key.toString(), true));
 
       return modelMap;
    }
@@ -97,8 +91,8 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Name", getPropertyValueString(this._name));
-      modelMap.put("Key", getPropertyValueString(this._key));
+      modelMap.put("Name", getPropertyValueString(this.name));
+      modelMap.put("Key", getPropertyValueString(this.key));
 
       return modelMap;
    }
@@ -106,7 +100,7 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Key", getPropertyValueString(this._key));
+      modelMap.put("Key", getPropertyValueString(this.key));
 
       return modelMap;
    }
@@ -114,7 +108,7 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportValuePropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Name", getPropertyValueString(this._name));
+      modelMap.put("Name", getPropertyValueString(this.name));
 
       return modelMap;
    }
@@ -130,14 +124,14 @@ public class Theme extends CommonObject {
    @Override
    public Object[] fetchObject() {
       Object[] obj = new Object[2];
-      obj[0] = this._key;
-      obj[1] = this._name;
+      obj[0] = this.key;
+      obj[1] = this.name;
       
       return obj;
    }
 
    @Override
    public String fetchDescription() {
-      return String.format("%s", this._name);
+      return String.format("%s", this.name);
    }
 }
