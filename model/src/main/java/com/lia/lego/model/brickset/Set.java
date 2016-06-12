@@ -297,7 +297,7 @@ public class Set extends CommonObject {
    }
    
    @Override
-   public Map<String, String> exportValueFieldMap(){
+   public Map<String, String> exportValuePropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
       modelMap.put("Number", getPropertyValueString(this._number));
       modelMap.put("Variant", getPropertyValueString(this._variant));

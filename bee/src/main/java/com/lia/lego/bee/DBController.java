@@ -1,11 +1,17 @@
 package com.lia.lego.bee;
 
 import java.util.List;
+import java.util.UUID;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import com.lia.common.CommonObject;
 import com.lia.common.mysql.Configure;
 import com.lia.common.mysql.CreateHandler;
 import com.lia.common.mysql.DeleteHandler;
+import com.lia.lego.model.Theme;
 import com.lia.lego.model.brickset.Set;
 
 public class DBController {
@@ -45,6 +51,36 @@ public class DBController {
             List<CommonObject> inventoryList = jsonController.getInventoryBySet(set);
             createHandler.create(c, inventoryList);
             i++;
+         }
+      }
+      catch (Exception ex){
+         System.out.println(ex.getMessage());
+      }
+   }
+   
+   public void generateTheme(){
+      try {
+         Configuration config = new Configuration().configure();
+         SessionFactory factory = config.buildSessionFactory();
+         Session session = null;
+         
+         try {
+            session = factory.openSession();
+            session.beginTransaction();
+            UUID key = UUID.randomUUID();
+            Theme theme = new Theme("Theme", key.toString());
+            session.save(theme);
+            session.getTransaction().commit();
+         }
+         catch (Exception ex) {
+            throw ex;
+         }
+         finally {
+            if (session != null) {
+               if (session.isOpen()) {
+                  session.close();
+               }
+            }
          }
       }
       catch (Exception ex){

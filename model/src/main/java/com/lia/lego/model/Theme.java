@@ -11,11 +11,12 @@ import com.lia.common.mysql.FieldModel;
 
 public class Theme extends CommonObject {
    private String _name = "";
-   private UUID _key = null;
+   
+   private String _key = null;
 
    
    public Theme(String name,
-                UUID key){
+                String key){
       this._name = name;
       this._key = key;
    }
@@ -23,7 +24,7 @@ public class Theme extends CommonObject {
    public Theme(CommonObject commonObject){
       Object[] object = commonObject.fetchObject();
       this._name = convertToString(object[0]);
-      this._key = convertToUUID(object[1]);
+      this._key = convertToString(object[1]);
    }
    
    public String getName() {
@@ -31,15 +32,15 @@ public class Theme extends CommonObject {
    }
 
    public void setName(String name) {
-      this._name = name
+      this._name = name;
    }
 
    public UUID getKey() {
-      return _key;
+      return UUID.fromString(_key);
    }
 
    public void setKey(UUID key) {
-      this._key = key
+      this._key = key.toString();
    }
 
 
@@ -55,7 +56,7 @@ public class Theme extends CommonObject {
       case "Name":
          return this._name.toString();
       case "Key":
-         return this._key.toString();
+         return this._key;
 
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
@@ -70,7 +71,7 @@ public class Theme extends CommonObject {
          this._name = fieldValue;
          break;
       case "Key":
-         this._key = convertToUUID(fieldValue);
+         this._key = fieldValue;
          break;
 
       default:
@@ -97,7 +98,7 @@ public class Theme extends CommonObject {
    public Map<String, String> exportPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
       modelMap.put("Name", getPropertyValueString(this._name));
-      modelMap.put("Key", getPropertyValueUUID(this._key));
+      modelMap.put("Key", getPropertyValueString(this._key));
 
       return modelMap;
    }
@@ -105,7 +106,7 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Key", getPropertyValueUUID(this._key));
+      modelMap.put("Key", getPropertyValueString(this._key));
 
       return modelMap;
    }
@@ -138,11 +139,5 @@ public class Theme extends CommonObject {
    @Override
    public String fetchDescription() {
       return String.format("%s", this._name);
-   }
-
-   @Override
-   public Map<String, String> exportValueFieldMap() {
-      // TODO Auto-generated method stub
-      return null;
    }
 }

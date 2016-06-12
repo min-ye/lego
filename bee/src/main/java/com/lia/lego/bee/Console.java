@@ -9,6 +9,7 @@ public class Console {
          RawController raw = new RawController();
          JsonController json = new JsonController();
          DBController db = new DBController();
+         db.generateTheme();
          //raw.downloadSetRawToCSV();
          //raw.downloadInventoryRawToCSV();
          //json.convertSetFromRawToJson();
@@ -40,7 +41,7 @@ public class Console {
             choice = console.readLine("Choice: \n");
             switch (choice){
             case "1":
-               
+               db.generateTheme();
                break;
             case "2":
                raw.downloadSetRawToCSV();
