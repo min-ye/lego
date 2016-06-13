@@ -3,9 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.lia.lego.model">
-   <class name="Theme" table="Theme">
+   <class name="SubTheme" table="SubTheme">
       <id name="Key" column="`Key`" type="org.hibernate.type.UUIDCharType"></id>
       <property name="Name" column="Name" type="string" length="128"></property>
+      <property name="ThemeKey" column="ThemeKey" type="org.hibernate.type.UUIDCharType"></property>
 
    </class>
 </hibernate-mapping>

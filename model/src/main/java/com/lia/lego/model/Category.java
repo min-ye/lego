@@ -9,20 +9,20 @@ import java.util.UUID;
 import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
 
-public class Theme extends CommonObject {
+public class Category extends CommonObject {
    private String _name = "";
    private UUID _key = null;
 
    
-   public Theme() { }
+   public Category() { }
 
-   public Theme(String name,
-                UUID key){
+   public Category(String name,
+                   UUID key){
       this._name = name;
       this._key = key;
    }
    
-   public Theme(CommonObject commonObject){
+   public Category(CommonObject commonObject){
       Object[] object = commonObject.fetchObject();
       this._name = convertToString(object[0]);
       this._key = convertToUUID(object[1]);
@@ -48,7 +48,7 @@ public class Theme extends CommonObject {
    
    @Override
    public String fetchObjectName(){
-      return "Theme";
+      return "Category";
    }
    
    @Override

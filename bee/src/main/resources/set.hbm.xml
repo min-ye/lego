@@ -17,7 +17,6 @@
       <property name="PriceCA" column="PriceCA" type="float"></property>
       <property name="PriceEU" column="PriceEU" type="float"></property>
       <property name="ImageURL" column="ImageURL" type="string" length="256"></property>
-      <property name="Key" column="Key" type="org.hibernate.type.UUIDCharType"></property>
 
    </class>
 </hibernate-mapping>
