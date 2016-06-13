@@ -24,6 +24,8 @@ public class Set extends CommonObject {
    private String _priceEU = "";
    private String _imageURL = "";
    
+   public Set() {}
+   
    public Set(String setID, String number, String variant,
               String theme, String subTheme, String year,
               String name, String minifigs, String pieces,

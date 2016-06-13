@@ -1,11 +1,15 @@
 package com.lia.lego.bee;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.lia.common.CommonObject;
 import com.lia.common.mysql.Configure;
@@ -58,7 +62,7 @@ public class DBController {
       }
    }
    
-   public void generateTheme(){
+   public void generateTheme(List<String> themeList){
       try {
          Configuration config = new Configuration().configure();
          SessionFactory factory = config.buildSessionFactory();
@@ -67,11 +71,15 @@ public class DBController {
          try {
             session = factory.openSession();
             session.beginTransaction();
-            UUID key = UUID.randomUUID();
-            Theme theme = new Theme();
-            theme.setKey(key);
-            theme.setName("Theme");
-            session.save(theme);
+            String script = "delete from Theme"; 
+            Query query =session.createQuery(script);
+            query.executeUpdate();
+            
+            for (String themeName : themeList) {
+               UUID key = UUID.randomUUID();
+               Theme theme = new Theme(themeName, key);
+               session.save(theme);
+            }
             session.getTransaction().commit();
          }
          catch (Exception ex) {
@@ -84,6 +92,48 @@ public class DBController {
                }
             }
          }
+      }
+      catch (Exception ex){
+         System.out.println(ex.getMessage());
+      }
+   }
+   
+   public void list() {
+      List<String> themeList = new ArrayList<String>();
+      try {
+         Configuration config = new Configuration().configure();
+         SessionFactory factory = config.buildSessionFactory();
+         Session session = null;
+         Transaction transaction = null;
+         
+         try {
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+            List setList = session.createQuery("FROM com.lia.lego.model.brickset.Set").list();
+            for (Iterator iterator = setList.iterator(); iterator.hasNext();){
+               Set set = (Set) iterator.next();
+               if (!themeList.contains(set.getTheme())) {
+                  themeList.add(set.getTheme());
+               }
+            }
+            
+            transaction.commit();
+            
+            
+         }
+         catch (Exception ex) {
+            if (transaction!=null) transaction.rollback(); 
+            throw ex;
+         }
+         finally {
+            if (session != null) {
+               if (session.isOpen()) {
+                  session.close();
+               }
+            }
+         }
+         
+         generateTheme(themeList);
       }
       catch (Exception ex){
          System.out.println(ex.getMessage());

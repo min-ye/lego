@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lia.lego.model">
+   <class name="Set" table="Set">
+      <id name="Key" column="`Key`" type="org.hibernate.type.UUIDCharType"></id>
+      <property name="Number" column="Number" type="string" length="16"></property>
+      <property name="Variant" column="Variant" type="integer"></property>
+      <property name="SubThemeKey" column="SubThemeKey" type="org.hibernate.type.UUIDCharType"></property>
+      <property name="Year" column="Year" type="short"></property>
+      <property name="Name" column="Name" type="string" length="128"></property>
+      <property name="Minifigs" column="Minifigs" type="short"></property>
+      <property name="Piece" column="Piece" type="integer"></property>
+      <property name="PriceUK" column="PriceUK" type="float"></property>
+      <property name="PriceUS" column="PriceUS" type="float"></property>
+      <property name="PriceCA" column="PriceCA" type="float"></property>
+      <property name="PriceEU" column="PriceEU" type="float"></property>
+      <property name="ImageURL" column="ImageURL" type="string" length="256"></property>
+      <property name="Key" column="Key" type="org.hibernate.type.UUIDCharType"></property>
+
+   </class>
+</hibernate-mapping>

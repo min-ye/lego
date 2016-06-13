@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lia.lego.model.brickset">
+   <class name="Set" table="brickset">
+      <id name="SetID" column="SetID" type="string" length="16"></id>
+      <property name="Number" column="Number" type="string" length="16"></property>
+      <property name="Variant" column="Variant" type="string" length="8"></property>
+      <property name="Theme" column="Theme" type="string" length="128"></property>
+      <property name="SubTheme" column="SubTheme" type="string" length="128"></property>
+      <property name="Year" column="Year" type="string" length="8"></property>
+      <property name="Name" column="Name" type="string" length="128"></property>
+      <property name="Minifigs" column="Minifigs" type="string" length="8"></property>
+      <property name="Pieces" column="Pieces" type="string" length="8"></property>
+      <property name="PriceUK" column="PriceUK" type="string" length="16"></property>
+      <property name="PriceUS" column="PriceUS" type="string" length="16"></property>
+      <property name="PriceCA" column="PriceCA" type="string" length="16"></property>
+      <property name="PriceEU" column="PriceEU" type="string" length="16"></property>
+      <property name="ImageURL" column="ImageURL" type="string" length="256"></property>
+
+   </class>
+</hibernate-mapping>

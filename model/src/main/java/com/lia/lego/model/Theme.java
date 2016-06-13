@@ -10,8 +10,8 @@ import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
 
 public class Theme extends CommonObject {
-   private String name = "";
-   private UUID key = null;
+   private String _name = "";
+   private UUID _key = null;
    
    public Theme() {
       
@@ -19,24 +19,24 @@ public class Theme extends CommonObject {
    
    public Theme(String name,
                 UUID key){
-      this.name = name;
-      this.key = key;
+      this._name = name;
+      this._key = key;
    }
    
    public String getName() {
-      return name;
+      return _name;
    }
 
    public void setName(String name) {
-      this.name = name;
+      this._name = name;
    }
 
    public UUID getKey() {
-      return this.key;
+      return this._key;
    }
 
    public void setKey(UUID key) {
-      this.key = key;
+      this._key = key;
    }
    
    @Override
@@ -48,9 +48,9 @@ public class Theme extends CommonObject {
    public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "Name":
-         return this.name.toString();
+         return this._name.toString();
       case "Key":
-         return this.key.toString();
+         return this._key.toString();
 
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
@@ -62,10 +62,10 @@ public class Theme extends CommonObject {
    {
       switch (fieldName) {
       case "Name":
-         this.name = fieldValue;
+         this._name = fieldValue;
          break;
       case "Key":
-         this.key = convertToUUID(fieldValue);
+         this._key = convertToUUID(fieldValue);
          break;
 
       default:
@@ -82,8 +82,8 @@ public class Theme extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("Name", new FieldModel("String", this.name, false));
-      modelMap.put("Key", new FieldModel("UUID", this.key.toString(), true));
+      modelMap.put("Name", new FieldModel("String", this._name, false));
+      modelMap.put("Key", new FieldModel("UUID", this._key.toString(), true));
 
       return modelMap;
    }
@@ -91,8 +91,8 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Name", getPropertyValueString(this.name));
-      modelMap.put("Key", getPropertyValueString(this.key));
+      modelMap.put("Name", getPropertyValueString(this._name));
+      modelMap.put("Key", getPropertyValueString(this._key));
 
       return modelMap;
    }
@@ -100,7 +100,7 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Key", getPropertyValueString(this.key));
+      modelMap.put("Key", getPropertyValueString(this._key));
 
       return modelMap;
    }
@@ -108,7 +108,7 @@ public class Theme extends CommonObject {
    @Override
    public Map<String, String> exportValuePropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("Name", getPropertyValueString(this.name));
+      modelMap.put("Name", getPropertyValueString(this._name));
 
       return modelMap;
    }
@@ -124,14 +124,14 @@ public class Theme extends CommonObject {
    @Override
    public Object[] fetchObject() {
       Object[] obj = new Object[2];
-      obj[0] = this.key;
-      obj[1] = this.name;
+      obj[0] = this._key;
+      obj[1] = this._name;
       
       return obj;
    }
 
    @Override
    public String fetchDescription() {
-      return String.format("%s", this.name);
+      return String.format("%s", this._name);
    }
 }
