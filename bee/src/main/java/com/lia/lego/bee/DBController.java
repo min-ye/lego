@@ -15,6 +15,7 @@ import com.lia.common.CommonObject;
 import com.lia.common.mysql.Configure;
 import com.lia.common.mysql.CreateHandler;
 import com.lia.common.mysql.DeleteHandler;
+import com.lia.lego.model.SubTheme;
 import com.lia.lego.model.Theme;
 import com.lia.lego.model.brickset.Set;
 
@@ -87,7 +88,7 @@ public class DBController {
                List<String> subThemeNameList = getSubThemeNameList(themeName);
                for (String subThemeName : subThemeNameList) {
                   UUID subThemeKey = UUID.randomUUID();
-                  //SubTheme subTheme = new SubTheme()
+                  SubTheme subTheme = new SubTheme();
                }
             }
             session.getTransaction().commit();
