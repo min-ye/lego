@@ -48,7 +48,7 @@ public class Console {
             }
             switch(choice){
             case 1:
-               db.list();
+               db.initialize();
                break;
             case 2:
                raw.downloadSetRawToCSV();

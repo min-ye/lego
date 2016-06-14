@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lia.lego.model">
+   <class name="Brick" table="Brick">
+      
+      <property name="ElementID" column="ElementID" type="string" length="16"></property>
+      <property name="DesignID" column="DesignID" type="string" length="16"></property>
+      <property name="ColorKey" column="ColorKey" type="org.hibernate.type.UUIDCharType"></property>
+      <property name="CategoryKey" column="CategoryKey" type="org.hibernate.type.UUIDCharType"></property>
+      <property name="Name" column="Name" type="string" length="128"></property>
+      <property name="ImageURL" column="ImageURL" type="string" length="256"></property>
+
+   </class>
+</hibernate-mapping>

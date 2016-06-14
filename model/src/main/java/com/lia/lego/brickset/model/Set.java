@@ -1,9 +1,10 @@
-package com.lia.lego.model.brickset;
+package com.lia.lego.brickset.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.UUID;
 
 import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
@@ -23,14 +24,24 @@ public class Set extends CommonObject {
    private String _priceCA = "";
    private String _priceEU = "";
    private String _imageURL = "";
+
    
-   public Set() {}
-   
-   public Set(String setID, String number, String variant,
-              String theme, String subTheme, String year,
-              String name, String minifigs, String pieces,
-              String priceUK, String priceUS, String priceCA,
-              String priceEU, String imageURL){
+   public Set() { }
+
+   public Set(String setID,
+              String number,
+              String variant,
+              String theme,
+              String subTheme,
+              String year,
+              String name,
+              String minifigs,
+              String pieces,
+              String priceUK,
+              String priceUS,
+              String priceCA,
+              String priceEU,
+              String imageURL){
       this._setID = setID;
       this._number = number;
       this._variant = variant;
@@ -49,110 +60,139 @@ public class Set extends CommonObject {
    
    public Set(CommonObject commonObject){
       Object[] object = commonObject.fetchObject();
-      this._setID = object[0].toString();
-      this._number = object[1].toString();
-      this._variant = object[2].toString();
-      this._theme = object[3].toString();
-      this._subTheme = object[4].toString();
-      this._year = object[5].toString();
-      this._name = object[6].toString();
-      this._minifigs = object[7].toString();
-      this._pieces = object[8].toString();
-      this._priceUK = object[9].toString();
-      this._priceUS = object[10].toString();
-      this._priceCA = object[11].toString();
-      this._priceEU = object[12].toString();
-      this._imageURL = object[13].toString();
+      this._setID = convertToString(object[0]);
+      this._number = convertToString(object[1]);
+      this._variant = convertToString(object[2]);
+      this._theme = convertToString(object[3]);
+      this._subTheme = convertToString(object[4]);
+      this._year = convertToString(object[5]);
+      this._name = convertToString(object[6]);
+      this._minifigs = convertToString(object[7]);
+      this._pieces = convertToString(object[8]);
+      this._priceUK = convertToString(object[9]);
+      this._priceUS = convertToString(object[10]);
+      this._priceCA = convertToString(object[11]);
+      this._priceEU = convertToString(object[12]);
+      this._imageURL = convertToString(object[13]);
    }
    
    public String getSetID() {
-      return _setID;
+      return this._setID;
    }
-   public void setSetID(String _setID) {
-      this._setID = _setID;
+
+   public void setSetID(String setID) {
+      this._setID = setID;
    }
+
    public String getNumber() {
-      return _number;
+      return this._number;
    }
-   public void setNumber(String _number) {
-      this._number = _number;
+
+   public void setNumber(String number) {
+      this._number = number;
    }
+
    public String getVariant() {
-      return _variant;
+      return this._variant;
    }
-   public void setVariant(String _variant) {
-      this._variant = _variant;
+
+   public void setVariant(String variant) {
+      this._variant = variant;
    }
+
    public String getTheme() {
-      return _theme;
+      return this._theme;
    }
-   public void setTheme(String _theme) {
-      this._theme = _theme;
+
+   public void setTheme(String theme) {
+      this._theme = theme;
    }
+
    public String getSubTheme() {
-      return _subTheme;
+      return this._subTheme;
    }
-   public void setSubTheme(String _subTheme) {
-      this._subTheme = _subTheme;
+
+   public void setSubTheme(String subTheme) {
+      this._subTheme = subTheme;
    }
+
    public String getYear() {
-      return _year;
+      return this._year;
    }
-   public void setYear(String _year) {
-      this._year = _year;
+
+   public void setYear(String year) {
+      this._year = year;
    }
+
    public String getName() {
-      return _name;
+      return this._name;
    }
-   public void setName(String _name) {
-      this._name = _name;
+
+   public void setName(String name) {
+      this._name = name;
    }
+
    public String getMinifigs() {
-      return _minifigs;
+      return this._minifigs;
    }
-   public void setMinifigs(String _minifigs) {
-      this._minifigs = _minifigs;
+
+   public void setMinifigs(String minifigs) {
+      this._minifigs = minifigs;
    }
+
    public String getPieces() {
-      return _pieces;
+      return this._pieces;
    }
-   public void setPieces(String _pieces) {
-      this._pieces = _pieces;
+
+   public void setPieces(String pieces) {
+      this._pieces = pieces;
    }
+
    public String getPriceUK() {
-      return _priceUK;
+      return this._priceUK;
    }
-   public void setPriceUK(String _priceUK) {
-      this._priceUK = _priceUK;
+
+   public void setPriceUK(String priceUK) {
+      this._priceUK = priceUK;
    }
+
    public String getPriceUS() {
-      return _priceUS;
+      return this._priceUS;
    }
-   public void setPriceUS(String _priceUS) {
-      this._priceUS = _priceUS;
+
+   public void setPriceUS(String priceUS) {
+      this._priceUS = priceUS;
    }
+
    public String getPriceCA() {
-      return _priceCA;
+      return this._priceCA;
    }
-   public void setPriceCA(String _priceCA) {
-      this._priceCA = _priceCA;
+
+   public void setPriceCA(String priceCA) {
+      this._priceCA = priceCA;
    }
+
    public String getPriceEU() {
-      return _priceEU;
+      return this._priceEU;
    }
-   public void setPriceEU(String _priceEU) {
-      this._priceEU = _priceEU;
+
+   public void setPriceEU(String priceEU) {
+      this._priceEU = priceEU;
    }
+
    public String getImageURL() {
-      return _imageURL;
+      return this._imageURL;
    }
-   public void setImageURL(String _imageURL) {
-      this._imageURL = _imageURL;
+
+   public void setImageURL(String imageURL) {
+      this._imageURL = imageURL;
    }
+
+
    
    @Override
    public String fetchObjectName(){
-      return "BrickSet";
+      return "Set";
    }
    
    @Override
@@ -176,16 +216,17 @@ public class Set extends CommonObject {
          return this._minifigs;
       case "Pieces":
          return this._pieces;
-      case "UKPrice":
+      case "PriceUK":
          return this._priceUK;
-      case "USPrice":
+      case "PriceUS":
          return this._priceUS;
-      case "CAPrice":
+      case "PriceCA":
          return this._priceCA;
-      case "EUPrice":
+      case "PriceEU":
          return this._priceEU;
       case "ImageURL":
          return this._imageURL;
+
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
       }
@@ -195,50 +236,51 @@ public class Set extends CommonObject {
    public void setValue(String fieldName, String fieldValue) throws Exception
    {
       switch (fieldName) {
-         case "SetID":
-            this._setID = fieldValue;
-            break;
-         case "Number":
-            this._number = fieldValue;
-            break;
-         case "Variant":
-            this._variant = fieldValue;
-            break;
-         case "Theme":
-            this._theme = fieldValue;
-            break;
-         case "SubTheme":
-            this._subTheme = fieldValue;
-            break;
-         case "Year":
-            this._year = fieldValue;
-            break;
-         case "Name":
-            this._name = fieldValue;
-            break;
-         case "Minifigs":
-            this._minifigs = fieldValue;
-            break;
-         case "Pieces":
-            this._pieces = fieldValue;
-            break;
-         case "UKPrice":
-            this._priceUK = fieldValue;
-            break;
-         case "USPrice":
-            this._priceUS = fieldValue;
-            break;
-         case "CAPrice":
-            this._priceCA = fieldValue;
-            break;
-         case "EUPrice":
-            this._priceEU = fieldValue;
-            break;
-         case "ImageURL":
-            this._imageURL = fieldValue;
-            break;
-         default:
-            throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
+      case "SetID":
+         this._setID = fieldValue;
+         break;
+      case "Number":
+         this._number = fieldValue;
+         break;
+      case "Variant":
+         this._variant = fieldValue;
+         break;
+      case "Theme":
+         this._theme = fieldValue;
+         break;
+      case "SubTheme":
+         this._subTheme = fieldValue;
+         break;
+      case "Year":
+         this._year = fieldValue;
+         break;
+      case "Name":
+         this._name = fieldValue;
+         break;
+      case "Minifigs":
+         this._minifigs = fieldValue;
+         break;
+      case "Pieces":
+         this._pieces = fieldValue;
+         break;
+      case "PriceUK":
+         this._priceUK = fieldValue;
+         break;
+      case "PriceUS":
+         this._priceUS = fieldValue;
+         break;
+      case "PriceCA":
+         this._priceCA = fieldValue;
+         break;
+      case "PriceEU":
+         this._priceEU = fieldValue;
+         break;
+      case "ImageURL":
+         this._imageURL = fieldValue;
+         break;
+
+      default:
+         throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
       }
    }
    
@@ -251,20 +293,20 @@ public class Set extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("SetID", new FieldModel("string", this._setID, true));
-      modelMap.put("Number", new FieldModel("string", this._number, false));
-      modelMap.put("Variant", new FieldModel("string", this._variant, false));
-      modelMap.put("Theme", new FieldModel("string", this._theme, false));
-      modelMap.put("SubTheme", new FieldModel("string", this._subTheme, false));
-      modelMap.put("Year", new FieldModel("string", this._year, false));
-      modelMap.put("Name", new FieldModel("string", this._name, false));
-      modelMap.put("Minifigs", new FieldModel("string", this._minifigs, false));
-      modelMap.put("Pieces", new FieldModel("string", this._pieces, false));
-      modelMap.put("UKPrice", new FieldModel("string", this._priceUK, false));
-      modelMap.put("USPrice", new FieldModel("string", this._priceUS, false));
-      modelMap.put("CAPrice", new FieldModel("string", this._priceCA, false));
-      modelMap.put("EUPrice", new FieldModel("string", this._priceEU, false));
-      modelMap.put("ImageURL", new FieldModel("string", this._imageURL, false));
+      modelMap.put("SetID", new FieldModel("String", this._setID, true));
+      modelMap.put("Number", new FieldModel("String", this._number, false));
+      modelMap.put("Variant", new FieldModel("String", this._variant, false));
+      modelMap.put("Theme", new FieldModel("String", this._theme, false));
+      modelMap.put("SubTheme", new FieldModel("String", this._subTheme, false));
+      modelMap.put("Year", new FieldModel("String", this._year, false));
+      modelMap.put("Name", new FieldModel("String", this._name, false));
+      modelMap.put("Minifigs", new FieldModel("String", this._minifigs, false));
+      modelMap.put("Pieces", new FieldModel("String", this._pieces, false));
+      modelMap.put("PriceUK", new FieldModel("String", this._priceUK, false));
+      modelMap.put("PriceUS", new FieldModel("String", this._priceUS, false));
+      modelMap.put("PriceCA", new FieldModel("String", this._priceCA, false));
+      modelMap.put("PriceEU", new FieldModel("String", this._priceEU, false));
+      modelMap.put("ImageURL", new FieldModel("String", this._imageURL, false));
 
       return modelMap;
    }
@@ -281,10 +323,10 @@ public class Set extends CommonObject {
       modelMap.put("Name", getPropertyValueString(this._name));
       modelMap.put("Minifigs", getPropertyValueString(this._minifigs));
       modelMap.put("Pieces", getPropertyValueString(this._pieces));
-      modelMap.put("UKPrice", getPropertyValueString(this._priceUK));
-      modelMap.put("USPrice", getPropertyValueString(this._priceUS));
-      modelMap.put("CAPrice", getPropertyValueString(this._priceCA));
-      modelMap.put("EUPrice", getPropertyValueString(this._priceEU));
+      modelMap.put("PriceUK", getPropertyValueString(this._priceUK));
+      modelMap.put("PriceUS", getPropertyValueString(this._priceUS));
+      modelMap.put("PriceCA", getPropertyValueString(this._priceCA));
+      modelMap.put("PriceEU", getPropertyValueString(this._priceEU));
       modelMap.put("ImageURL", getPropertyValueString(this._imageURL));
 
       return modelMap;
@@ -309,10 +351,10 @@ public class Set extends CommonObject {
       modelMap.put("Name", getPropertyValueString(this._name));
       modelMap.put("Minifigs", getPropertyValueString(this._minifigs));
       modelMap.put("Pieces", getPropertyValueString(this._pieces));
-      modelMap.put("UKPrice", getPropertyValueString(this._priceUK));
-      modelMap.put("USPrice", getPropertyValueString(this._priceUS));
-      modelMap.put("CAPrice", getPropertyValueString(this._priceCA));
-      modelMap.put("EUPrice", getPropertyValueString(this._priceEU));
+      modelMap.put("PriceUK", getPropertyValueString(this._priceUK));
+      modelMap.put("PriceUS", getPropertyValueString(this._priceUS));
+      modelMap.put("PriceCA", getPropertyValueString(this._priceCA));
+      modelMap.put("PriceEU", getPropertyValueString(this._priceEU));
       modelMap.put("ImageURL", getPropertyValueString(this._imageURL));
 
       return modelMap;
@@ -335,6 +377,7 @@ public class Set extends CommonObject {
       fieldNameList.add("PriceCA");
       fieldNameList.add("PriceEU");
       fieldNameList.add("ImageURL");
+
       return fieldNameList;
    }
    
@@ -355,12 +398,12 @@ public class Set extends CommonObject {
       obj[11] = this._priceCA;
       obj[12] = this._priceEU;
       obj[13] = this._imageURL;
-      
+
       return obj;
    }
 
    @Override
    public String fetchDescription() {
-      return String.format("%s(%s)", this._number, this._name);
+      return String.format("%s(%s)", this._name);
    }
 }

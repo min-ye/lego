@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="com.lia.lego.model.brickset">
+<hibernate-mapping package="com.lia.lego.brickset.model">
    <class name="Set" table="brickset">
       <id name="SetID" column="SetID" type="string" length="16"></id>
       <property name="Number" column="Number" type="string" length="16"></property>

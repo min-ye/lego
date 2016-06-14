@@ -187,7 +187,7 @@ public class Set extends CommonObject {
    public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "Number":
-         return this._number.toString();
+         return this._number;
       case "Variant":
          return this._variant.toString();
       case "SubThemeKey":
@@ -195,7 +195,7 @@ public class Set extends CommonObject {
       case "Year":
          return this._year.toString();
       case "Name":
-         return this._name.toString();
+         return this._name;
       case "Minifigs":
          return this._minifigs.toString();
       case "Piece":
@@ -209,7 +209,7 @@ public class Set extends CommonObject {
       case "PriceEU":
          return this._priceEU.toString();
       case "ImageURL":
-         return this._imageURL.toString();
+         return this._imageURL;
       case "Key":
          return this._key.toString();
 
@@ -276,18 +276,18 @@ public class Set extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("Number", new FieldModel("String", this._number.toString(), false));
+      modelMap.put("Number", new FieldModel("String", this._number, false));
       modelMap.put("Variant", new FieldModel("Integer", this._variant.toString(), false));
       modelMap.put("SubThemeKey", new FieldModel("UUID", this._subThemeKey.toString(), false));
       modelMap.put("Year", new FieldModel("Short", this._year.toString(), false));
-      modelMap.put("Name", new FieldModel("String", this._name.toString(), false));
+      modelMap.put("Name", new FieldModel("String", this._name, false));
       modelMap.put("Minifigs", new FieldModel("Short", this._minifigs.toString(), false));
       modelMap.put("Piece", new FieldModel("Integer", this._piece.toString(), false));
       modelMap.put("PriceUK", new FieldModel("Float", this._priceUK.toString(), false));
       modelMap.put("PriceUS", new FieldModel("Float", this._priceUS.toString(), false));
       modelMap.put("PriceCA", new FieldModel("Float", this._priceCA.toString(), false));
       modelMap.put("PriceEU", new FieldModel("Float", this._priceEU.toString(), false));
-      modelMap.put("ImageURL", new FieldModel("String", this._imageURL.toString(), false));
+      modelMap.put("ImageURL", new FieldModel("String", this._imageURL, false));
       modelMap.put("Key", new FieldModel("UUID", this._key.toString(), true));
 
       return modelMap;

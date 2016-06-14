@@ -29,7 +29,14 @@
       <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
      
       <mapping resource="brickset.hbm.xml"/>
+      
       <mapping resource="Theme.hbm.xml"/>
-         
+      <mapping resource="SubTheme.hbm.xml"/>
+      <mapping resource="Set.hbm.xml"/>
+      
+      <mapping resource="Category.hbm.xml"/>
+      <mapping resource="Color.hbm.xml"/>
+      
+        
    </session-factory>
 </hibernate-configuration>

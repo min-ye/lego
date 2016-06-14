@@ -67,7 +67,7 @@ public class SubTheme extends CommonObject {
    public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "Name":
-         return this._name.toString();
+         return this._name;
       case "ThemeKey":
          return this._themeKey.toString();
       case "Key":
@@ -106,7 +106,7 @@ public class SubTheme extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("Name", new FieldModel("String", this._name.toString(), false));
+      modelMap.put("Name", new FieldModel("String", this._name, false));
       modelMap.put("ThemeKey", new FieldModel("UUID", this._themeKey.toString(), false));
       modelMap.put("Key", new FieldModel("UUID", this._key.toString(), true));
 

@@ -103,17 +103,17 @@ public class Brick extends CommonObject {
    public String getPropertyValue(String fieldName) throws Exception{
       switch (fieldName){
       case "ElementID":
-         return this._elementID.toString();
+         return this._elementID;
       case "DesignID":
-         return this._designID.toString();
+         return this._designID;
       case "ColorKey":
          return this._colorKey.toString();
       case "CategoryKey":
          return this._categoryKey.toString();
       case "Name":
-         return this._name.toString();
+         return this._name;
       case "ImageURL":
-         return this._imageURL.toString();
+         return this._imageURL;
 
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
@@ -157,12 +157,12 @@ public class Brick extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("ElementID", new FieldModel("String", this._elementID.toString(), false));
-      modelMap.put("DesignID", new FieldModel("String", this._designID.toString(), false));
+      modelMap.put("ElementID", new FieldModel("String", this._elementID, false));
+      modelMap.put("DesignID", new FieldModel("String", this._designID, false));
       modelMap.put("ColorKey", new FieldModel("UUID", this._colorKey.toString(), false));
       modelMap.put("CategoryKey", new FieldModel("UUID", this._categoryKey.toString(), false));
-      modelMap.put("Name", new FieldModel("String", this._name.toString(), false));
-      modelMap.put("ImageURL", new FieldModel("String", this._imageURL.toString(), false));
+      modelMap.put("Name", new FieldModel("String", this._name, false));
+      modelMap.put("ImageURL", new FieldModel("String", this._imageURL, false));
 
       return modelMap;
    }

@@ -15,9 +15,9 @@ import com.lia.common.Cookie;
 import com.lia.common.FileHelper;
 import com.lia.common.Profile;
 import com.lia.common.WebHelper;
+import com.lia.lego.brickset.model.Inventory;
+import com.lia.lego.brickset.model.Set;
 import com.lia.common.CommonObject;
-import com.lia.lego.model.brickset.Inventory;
-import com.lia.lego.model.brickset.Set;
 
 public class RawController {
    private String _setUrl = "";

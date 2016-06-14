@@ -13,8 +13,8 @@ import com.lia.common.CommonObject;
 import com.lia.common.FileHelper;
 import com.lia.common.JsonHelper;
 import com.lia.common.Profile;
-import com.lia.lego.model.brickset.Inventory;
-import com.lia.lego.model.brickset.Set;
+import com.lia.lego.brickset.model.Inventory;
+import com.lia.lego.brickset.model.Set;
 
 public class JsonController {
    private String _setFolder = "";
