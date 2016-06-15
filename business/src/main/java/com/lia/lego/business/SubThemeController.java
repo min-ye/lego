@@ -223,4 +223,37 @@ public class SubThemeController implements Controller{
          System.out.println(ex.getMessage());
       }
    }
+   
+   public List<CommonObject> getSubThemeAccordingThemeKey(UUID themeKey){
+      List<CommonObject> subThemeList = new ArrayList<CommonObject>();
+      try {
+         
+         Configuration config = new Configuration().configure();
+         SessionFactory factory = config.buildSessionFactory();
+         Session session = null;
+         
+         try {
+            session = factory.openSession();
+            String hql="from com.lia.lego.SubTheme where ThemeKey = '" + themeKey.toString() + "'";
+            Query query=session.createQuery(hql);
+            
+            subThemeList = query.list();
+            
+         }
+         catch (Exception ex) {
+            throw ex;
+         }
+         finally {
+            if (session != null) {
+               if (session.isOpen()) {
+                  session.close();
+               }
+            }
+         }
+      }
+      catch (Exception ex){
+         System.out.println(ex.getMessage());
+      }
+      return subThemeList;
+   }
 }

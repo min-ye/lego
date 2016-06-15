@@ -4,7 +4,8 @@
 
 <hibernate-mapping package="com.lia.lego.model">
    <class name="Brick" table="Brick">
-      
+      <id name="Key" column="`Key`" type="org.hibernate.type.UUIDCharType"></id>
+
       <property name="ElementID" column="ElementID" type="string" length="16"></property>
       <property name="DesignID" column="DesignID" type="string" length="16"></property>
       <property name="ColorKey" column="ColorKey" type="org.hibernate.type.UUIDCharType"></property>

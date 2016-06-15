@@ -16,6 +16,7 @@ public class Brick extends CommonObject {
    private UUID _categoryKey = null;
    private String _name = "";
    private String _imageURL = "";
+   private UUID _key = null;
 
    
    public Brick() { }
@@ -25,13 +26,15 @@ public class Brick extends CommonObject {
                 UUID colorKey,
                 UUID categoryKey,
                 String name,
-                String imageURL){
+                String imageURL,
+                UUID key){
       this._elementID = elementID;
       this._designID = designID;
       this._colorKey = colorKey;
       this._categoryKey = categoryKey;
       this._name = name;
       this._imageURL = imageURL;
+      this._key = key;
    }
    
    public Brick(CommonObject commonObject){
@@ -42,6 +45,7 @@ public class Brick extends CommonObject {
       this._categoryKey = convertToUUID(object[3]);
       this._name = convertToString(object[4]);
       this._imageURL = convertToString(object[5]);
+      this._key = convertToUUID(object[6]);
    }
    
    public String getElementID() {
@@ -92,6 +96,14 @@ public class Brick extends CommonObject {
       this._imageURL = imageURL;
    }
 
+   public UUID getKey() {
+      return this._key;
+   }
+
+   public void setKey(UUID key) {
+      this._key = key;
+   }
+
 
    
    @Override
@@ -114,6 +126,8 @@ public class Brick extends CommonObject {
          return this._name;
       case "ImageURL":
          return this._imageURL;
+      case "Key":
+         return this._key.toString();
 
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
@@ -142,6 +156,9 @@ public class Brick extends CommonObject {
       case "ImageURL":
          this._imageURL = fieldValue;
          break;
+      case "Key":
+         this._key = convertToUUID(fieldValue);
+         break;
 
       default:
          throw new Exception(String.format("Unknown Field Name:[%s]", fieldName));
@@ -163,6 +180,7 @@ public class Brick extends CommonObject {
       modelMap.put("CategoryKey", new FieldModel("UUID", this._categoryKey.toString(), false));
       modelMap.put("Name", new FieldModel("String", this._name, false));
       modelMap.put("ImageURL", new FieldModel("String", this._imageURL, false));
+      modelMap.put("Key", new FieldModel("UUID", this._key.toString(), true));
 
       return modelMap;
    }
@@ -176,6 +194,7 @@ public class Brick extends CommonObject {
       modelMap.put("CategoryKey", getPropertyValueString(this._categoryKey));
       modelMap.put("Name", getPropertyValueString(this._name));
       modelMap.put("ImageURL", getPropertyValueString(this._imageURL));
+      modelMap.put("Key", getPropertyValueString(this._key));
 
       return modelMap;
    }
@@ -183,7 +202,8 @@ public class Brick extends CommonObject {
    @Override
    public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      
+      modelMap.put("Key", getPropertyValueString(this._key));
+
       return modelMap;
    }
    
@@ -209,19 +229,21 @@ public class Brick extends CommonObject {
       fieldNameList.add("CategoryKey");
       fieldNameList.add("Name");
       fieldNameList.add("ImageURL");
+      fieldNameList.add("Key");
 
       return fieldNameList;
    }
    
    @Override
    public Object[] fetchObject() {
-      Object[] obj = new Object[6];
+      Object[] obj = new Object[7];
       obj[0] = this._elementID;
       obj[1] = this._designID;
       obj[2] = this._colorKey;
       obj[3] = this._categoryKey;
       obj[4] = this._name;
       obj[5] = this._imageURL;
+      obj[6] = this._key;
 
       return obj;
    }

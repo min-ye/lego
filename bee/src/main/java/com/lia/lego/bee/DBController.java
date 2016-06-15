@@ -55,9 +55,11 @@ public class DBController {
    }
    
    public void initialize() {
-      ThemeController themeController = new ThemeController();
-      themeController.initialize();
-      SubThemeController subThemeController = new SubThemeController();
-      subThemeController.initialize();
+      //ThemeController themeController = new ThemeController();
+      //themeController.initialize();
+      //SubThemeController subThemeController = new SubThemeController();
+      //subThemeController.initialize();
+      com.lia.lego.business.SetController setController = new com.lia.lego.business.SetController();
+      setController.initialize();
    }
 }

@@ -4,8 +4,10 @@
 
 <hibernate-mapping package="com.lia.lego.brickset.model">
    <class name="Inventory" table="BrickSetInventory">
-      <id name="SetNumber" column="SetNumber" type="string" length="16"></id>
-      <id name="PartID" column="PartID" type="string" length="16"></id>
+      <composite-id>
+         <key-property name="SetNumber" column="SetNumber" type="string" length="16" />
+         <key-property name="PartID" column="PartID" type="string" length="16" />
+      </composite-id>
       <property name="Quantity" column="Quantity" type="string" length="8"></property>
       <property name="Colour" column="Colour" type="string" length="128"></property>
       <property name="Category" column="Category" type="string" length="128"></property>

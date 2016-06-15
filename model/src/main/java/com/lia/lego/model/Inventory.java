@@ -1,5 +1,6 @@
 package com.lia.lego.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.UUID;
 import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
 
-public class Inventory extends CommonObject {
+public class Inventory extends CommonObject implements Serializable{
    private UUID _setKey = null;
    private UUID _brickKey = null;
    private Integer _quantity = 0;
@@ -106,8 +107,8 @@ public class Inventory extends CommonObject {
    
    public Map<String, FieldModel> exportModel(){
       Map<String, FieldModel> modelMap = new HashMap<String, FieldModel>();
-      modelMap.put("SetKey", new FieldModel("UUID", this._setKey.toString(), false));
-      modelMap.put("BrickKey", new FieldModel("UUID", this._brickKey.toString(), false));
+      modelMap.put("SetKey", new FieldModel("UUID", this._setKey.toString(), true));
+      modelMap.put("BrickKey", new FieldModel("UUID", this._brickKey.toString(), true));
       modelMap.put("Quantity", new FieldModel("Integer", this._quantity.toString(), false));
 
       return modelMap;
@@ -126,15 +127,15 @@ public class Inventory extends CommonObject {
    @Override
    public Map<String, String> exportKeyPropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      
+      modelMap.put("SetKey", getPropertyValueString(this._setKey));
+      modelMap.put("BrickKey", getPropertyValueString(this._brickKey));
+
       return modelMap;
    }
    
    @Override
    public Map<String, String> exportValuePropertyMap(){
       Map<String, String> modelMap = new HashMap<String, String>();
-      modelMap.put("SetKey", getPropertyValueString(this._setKey));
-      modelMap.put("BrickKey", getPropertyValueString(this._brickKey));
       modelMap.put("Quantity", getPropertyValueString(this._quantity));
 
       return modelMap;

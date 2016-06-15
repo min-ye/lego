@@ -261,4 +261,42 @@ public class SetController implements Controller{
       return subThemeList;
    }
 
+   public List<CommonObject> getSetAccordingTheme(String themeName, String subThemeName) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+      try {
+         Configuration config = new Configuration().configure();
+         SessionFactory factory = config.buildSessionFactory();
+         Session session = null;
+         Transaction transaction = null;
+         
+         try {
+            session = factory.openSession();
+            transaction = session.beginTransaction();
+            List setList = session.createQuery("FROM com.lia.lego.brickset.model.Set s where s.Theme = '" + themeName + "' and s.SubTheme = '" + subThemeName + "'").list();
+            for (Iterator iterator = setList.iterator(); iterator.hasNext();){
+               Set set = (Set) iterator.next();
+                  output.add(set);
+            }
+            
+            transaction.commit();
+            
+            
+         }
+         catch (Exception ex) {
+            if (transaction!=null) transaction.rollback(); 
+            throw ex;
+         }
+         finally {
+            if (session != null) {
+               if (session.isOpen()) {
+                  session.close();
+               }
+            }
+         }
+      }
+      catch (Exception ex){
+         System.out.println(ex.getMessage());
+      }
+      return output;
+   }
 }

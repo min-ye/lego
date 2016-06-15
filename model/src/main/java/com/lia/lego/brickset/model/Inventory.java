@@ -1,5 +1,6 @@
 package com.lia.lego.brickset.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -9,7 +10,7 @@ import java.util.UUID;
 import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
 
-public class Inventory extends CommonObject {
+public class Inventory extends CommonObject implements Serializable {
    private String _setNumber = "";
    private String _partID = "";
    private String _quantity = "";
