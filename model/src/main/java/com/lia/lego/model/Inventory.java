@@ -165,4 +165,41 @@ public class Inventory extends CommonObject implements Serializable{
    public String fetchDescription() {
       return String.format("%s(%s)", this._setKey.toString(), this._brickKey.toString());
    }
+   
+   @Override
+   public int hashCode()
+   {
+       final int prime = 31;
+       int result = 1;
+       result = prime * result + ((_setKey == null) ? 0 : _setKey.hashCode());
+       result = prime * result + ((_brickKey == null) ? 0 : _brickKey.hashCode());
+       return result;
+   }
+
+   @Override
+   public boolean equals(Object obj)
+   {
+       if (this == obj)
+           return true;
+       if (obj == null)
+           return false;
+       if (getClass() != obj.getClass())
+           return false;
+       Inventory other = (Inventory) obj;
+       if (_setKey == null)
+       {
+           if (other._setKey != null)
+               return false;
+       }
+       else if (!_setKey.equals(other._setKey))
+           return false;
+       if (_brickKey == null)
+       {
+           if (other._brickKey != null)
+               return false;
+       }
+       else if (!_brickKey.equals(other._brickKey))
+           return false;
+       return true;
+   }
 }

@@ -13,7 +13,7 @@ import org.hibernate.query.Query;
 
 import com.lia.common.CommonObject;
 import com.lia.lego.business.Controller;
-import com.lia.lego.model.Set;
+import com.lia.lego.brickset.model.Set;
 
 public class SetController implements Controller{
 

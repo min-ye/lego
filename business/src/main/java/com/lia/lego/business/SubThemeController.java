@@ -234,7 +234,7 @@ public class SubThemeController implements Controller{
          
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.SubTheme where ThemeKey = '" + themeKey.toString() + "'";
+            String hql="from SubTheme where ThemeKey = '" + themeKey.toString() + "'";
             Query query=session.createQuery(hql);
             
             subThemeList = query.list();

@@ -297,4 +297,41 @@ public class Inventory extends CommonObject implements Serializable {
    public String fetchDescription() {
       return String.format("%s(%s)", this._setNumber, this._partID);
    }
+   
+   @Override
+   public int hashCode()
+   {
+       final int prime = 31;
+       int result = 1;
+       result = prime * result + ((_setNumber == null) ? 0 : _setNumber.hashCode());
+       result = prime * result + ((_partID == null) ? 0 : _partID.hashCode());
+       return result;
+   }
+
+   @Override
+   public boolean equals(Object obj)
+   {
+       if (this == obj)
+           return true;
+       if (obj == null)
+           return false;
+       if (getClass() != obj.getClass())
+           return false;
+       Inventory other = (Inventory) obj;
+       if (_setNumber == null)
+       {
+           if (other._setNumber != null)
+               return false;
+       }
+       else if (!_setNumber.equals(other._setNumber))
+           return false;
+       if (_partID == null)
+       {
+           if (other._partID != null)
+               return false;
+       }
+       else if (!_partID.equals(other._partID))
+           return false;
+       return true;
+   }
 }

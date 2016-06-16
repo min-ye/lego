@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import com.lia.common.CommonHelper;
 import com.lia.common.CommonObject;
 import com.lia.lego.model.Set;
 import com.lia.lego.model.SubTheme;
@@ -216,12 +217,13 @@ public class SetController implements Controller{
                      Integer variant = Integer.parseInt(brickSet.getVariant());
                      Short year = Short.parseShort(brickSet.getYear());
                      String name = brickSet.getName();
-                     Short minifigs = Short.parseShort(brickSet.getMinifigs());
-                     Integer pieces = Integer.parseInt(brickSet.getPieces());
-                     Float priceUK = Float.parseFloat(brickSet.getPriceUK());
-                     Float priceUS = Float.parseFloat(brickSet.getPriceUS());
-                     Float priceCA = Float.parseFloat(brickSet.getPriceCA());
-                     Float priceEU = Float.parseFloat(brickSet.getPriceEU());
+                     Short defaultMinifigs = 0;
+                     Short minifigs = CommonHelper.ConvertToShort(brickSet.getMinifigs(), defaultMinifigs);
+                     Integer pieces = CommonHelper.ConvertToInteger(brickSet.getPieces(), 0);
+                     Float priceUK = CommonHelper.ConvertToFloat(brickSet.getPriceUK(), 0f);
+                     Float priceUS = CommonHelper.ConvertToFloat(brickSet.getPriceUS(), 0f);
+                     Float priceCA = CommonHelper.ConvertToFloat(brickSet.getPriceCA(), 0f);
+                     Float priceEU = CommonHelper.ConvertToFloat(brickSet.getPriceEU(), 0f);
                      String imageURL = brickSet.getImageURL();
                      Set set = new Set(brickSet.getNumber(), 
                            variant, 
