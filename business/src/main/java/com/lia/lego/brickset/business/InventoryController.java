@@ -1,11 +1,13 @@
 package com.lia.lego.brickset.business;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
@@ -104,7 +106,7 @@ public class InventoryController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.brickset.Inventory as i where i.Key=:key";//使用命名参数，推荐使用，易读。
+            String hql="from com.lia.lego.brickset.Inventory as i where i.Key=:key";
             Query query=session.createQuery(hql);
             query.setString("key", key.toString());
             
@@ -163,21 +165,86 @@ public class InventoryController implements Controller{
       return output;
    }
 
-   public void deleteInSession(Session session, CommonObject obj) {
+   public void delete(Session session, CommonObject obj) {
       Inventory inventory = (Inventory) obj;
       session.delete(inventory);
    }
 
-   public void createInSession(Session session, CommonObject obj) {
+   public void create(Session session, CommonObject obj) {
       Inventory inventory = (Inventory) obj;
       session.save(inventory);
       
    }
 
-   public void updateInSession(Session session, CommonObject obj) {
+   public void update(Session session, CommonObject obj) {
+
       Inventory inventory = (Inventory) obj;
       session.update(inventory);
       
+   }
+
+   public CommonObject retrieveAccordingKey(Session session, UUID key) {
+      CommonObject output = null;
+      String hql="from com.lia.lego.brickset.Inventory as i where i.Key=:key";
+      Query query=session.createQuery(hql);
+      query.setString("key", key.toString());
+      
+      List<Inventory> inventoryList = query.list();
+      if (inventoryList.size() > 0){
+         output = inventoryList.get(0);
+      }
+      return output;
+   }
+
+   public List<CommonObject> retrieve(Session session) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+      String hql="from com.lia.lego.brickset.Inventory";
+      Query query=session.createQuery(hql);
+
+      List<Inventory> inventoryList = query.list();
+      for (Inventory inventory : inventoryList) {
+         output.add(inventory);
+      }
+      return output;
+   }
+   
+   public List<String> getColorNameListInSession(Session session) {
+      List<String> output = new ArrayList<String>();
+      List colorList = session.createQuery("select distinct i.Colour FROM com.lia.lego.brickset.model.Inventory i").list();
+      for (Iterator iterator = colorList.iterator(); iterator.hasNext();){
+         String color = (String) iterator.next();
+         if (!colorList.contains(color)) {
+            output.add(color);
+         }
+      }
+      return output;
+   }
+   
+   public List<String> getCategoryNameListInSession(Session session) {
+      List<String> output = new ArrayList<String>();
+      List categoryList = session.createQuery("select distinct i.Category FROM com.lia.lego.brickset.model.Inventory i").list();
+      for (Iterator iterator = categoryList.iterator(); iterator.hasNext();){
+         String category = (String) iterator.next();
+         if (!categoryList.contains(category)) {
+            output.add(category);
+         }
+      }
+      return output;
+   }
+   
+   public List<String[]> getBrickList(Session session) {
+      List<String[]> output = new ArrayList<String[]>();
+      List brickList = session.createQuery("select distinct i.PartID, i.DesignID, i.PartName, i.ImageURL, i.Colour, i.Category FROM com.lia.lego.brickset.model.Inventory i").list();
+      for (Iterator iterator = brickList.iterator(); iterator.hasNext();){
+         Object[] brick = (Object[]) iterator.next();
+         String[] brickString = new String[6];
+         for (Integer index = 0; index <6; index ++) {
+            brickString[index] = brick[index].toString();
+         }
+         
+         output.add(brickString);
+      }
+      return output;
    }
 
 }

@@ -133,7 +133,7 @@ public class Inventory extends CommonObject implements Serializable {
    
    @Override
    public String fetchObjectName(){
-      return "Inventory";
+      return "BrickSetInventory";
    }
    
    @Override

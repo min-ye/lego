@@ -103,7 +103,7 @@ public class InventoryController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.Inventory as i where i.Key=:key";//使用命名参数，推荐使用，易读。
+            String hql="from com.lia.lego.model.Inventory as i where i.Key=:key";
             Query query=session.createQuery(hql);
             query.setString("key", key.toString());
             
@@ -137,7 +137,7 @@ public class InventoryController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.Inventory";
+            String hql="from com.lia.lego.model.Inventory";
             Query query=session.createQuery(hql);
             
             List<Inventory> inventoryList = query.list();
@@ -162,21 +162,47 @@ public class InventoryController implements Controller{
       return output;
    }
 
-   public void deleteInSession(Session session, CommonObject obj) {
+   public void delete(Session session, CommonObject obj) {
       Inventory inventory = (Inventory) obj;
       session.delete(inventory);
    }
 
-   public void createInSession(Session session, CommonObject obj) {
+   public void create(Session session, CommonObject obj) {
       Inventory inventory = (Inventory) obj;
       session.save(inventory);
       
    }
 
-   public void updateInSession(Session session, CommonObject obj) {
+   public void update(Session session, CommonObject obj) {
+
       Inventory inventory = (Inventory) obj;
       session.update(inventory);
       
+   }
+
+   public CommonObject retrieveAccordingKey(Session session, UUID key) {
+      CommonObject output = null;
+      String hql="from com.lia.lego.model.Inventory as i where i.Key=:key";
+      Query query=session.createQuery(hql);
+      query.setString("key", key.toString());
+      
+      List<Inventory> inventoryList = query.list();
+      if (inventoryList.size() > 0){
+         output = inventoryList.get(0);
+      }
+      return output;
+   }
+
+   public List<CommonObject> retrieve(Session session) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+      String hql="from com.lia.lego.model.Inventory";
+      Query query=session.createQuery(hql);
+
+      List<Inventory> inventoryList = query.list();
+      for (Inventory inventory : inventoryList) {
+         output.add(inventory);
+      }
+      return output;
    }
 
 }

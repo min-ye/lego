@@ -192,7 +192,7 @@ public class Set extends CommonObject {
    
    @Override
    public String fetchObjectName(){
-      return "Set";
+      return "BrickSet";
    }
    
    @Override

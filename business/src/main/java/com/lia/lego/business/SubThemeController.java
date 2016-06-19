@@ -104,7 +104,7 @@ public class SubThemeController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.SubTheme as s where s.Key=:key";//使用命名参数，推荐使用，易读。
+            String hql="from com.lia.lego.model.SubTheme as s where s.Key=:key";
             Query query=session.createQuery(hql);
             query.setString("key", key.toString());
             
@@ -138,7 +138,7 @@ public class SubThemeController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.SubTheme";
+            String hql="from com.lia.lego.model.SubTheme";
             Query query=session.createQuery(hql);
             
             List<SubTheme> subThemeList = query.list();
@@ -163,23 +163,49 @@ public class SubThemeController implements Controller{
       return output;
    }
 
-   public void deleteInSession(Session session, CommonObject obj) {
+   public void delete(Session session, CommonObject obj) {
       SubTheme subTheme = (SubTheme) obj;
       session.delete(subTheme);
    }
 
-   public void createInSession(Session session, CommonObject obj) {
+   public void create(Session session, CommonObject obj) {
       SubTheme subTheme = (SubTheme) obj;
       session.save(subTheme);
       
    }
 
-   public void updateInSession(Session session, CommonObject obj) {
+   public void update(Session session, CommonObject obj) {
+
       SubTheme subTheme = (SubTheme) obj;
       session.update(subTheme);
       
    }
 
+   public CommonObject retrieveAccordingKey(Session session, UUID key) {
+      CommonObject output = null;
+      String hql="from com.lia.lego.model.SubTheme as s where s.Key=:key";
+      Query query=session.createQuery(hql);
+      query.setString("key", key.toString());
+      
+      List<SubTheme> subThemeList = query.list();
+      if (subThemeList.size() > 0){
+         output = subThemeList.get(0);
+      }
+      return output;
+   }
+
+   public List<CommonObject> retrieve(Session session) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+      String hql="from com.lia.lego.model.SubTheme";
+      Query query=session.createQuery(hql);
+
+      List<SubTheme> subThemeList = query.list();
+      for (SubTheme subTheme : subThemeList) {
+         output.add(subTheme);
+      }
+      return output;
+   }
+   
    public void initialize(){
       try {
          com.lia.lego.brickset.business.SetController setController = new com.lia.lego.brickset.business.SetController();
@@ -203,7 +229,7 @@ public class SubThemeController implements Controller{
                for (String subThemeName : subThemeNameList) {
                   UUID key = UUID.randomUUID();
                   SubTheme subTheme = new SubTheme(subThemeName, themeKey, key);
-                  createInSession(session, subTheme);
+                  create(session, subTheme);
                }
             }
             session.getTransaction().commit();
@@ -254,6 +280,15 @@ public class SubThemeController implements Controller{
       catch (Exception ex){
          System.out.println(ex.getMessage());
       }
+      return subThemeList;
+   }
+   
+   public List<CommonObject> getSubThemeAccordingThemeKeyInSession(Session session, UUID themeKey){
+      List<CommonObject> subThemeList = new ArrayList<CommonObject>();
+      String hql="from SubTheme where ThemeKey = '" + themeKey.toString() + "'";
+      Query query=session.createQuery(hql);
+            
+      subThemeList = query.list();
       return subThemeList;
    }
 }

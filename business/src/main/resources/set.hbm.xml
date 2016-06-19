@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.lia.lego.model">
-   <class name="Set" table="Set1">
+   <class name="Set" table="`Set`">
       <id name="Key" column="`Key`" type="org.hibernate.type.UUIDCharType"></id>
       <property name="Number" column="Number" type="string" length="16"></property>
       <property name="Variant" column="Variant" type="integer"></property>

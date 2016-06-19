@@ -106,7 +106,7 @@ public class SetController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.brickset.Set as s where s.Key=:key";//使用命名参数，推荐使用，易读。
+            String hql="from com.lia.lego.brickset.Set as s where s.Key=:key";
             Query query=session.createQuery(hql);
             query.setString("key", key.toString());
             
@@ -165,21 +165,47 @@ public class SetController implements Controller{
       return output;
    }
 
-   public void deleteInSession(Session session, CommonObject obj) {
+   public void delete(Session session, CommonObject obj) {
       Set set = (Set) obj;
       session.delete(set);
    }
 
-   public void createInSession(Session session, CommonObject obj) {
+   public void create(Session session, CommonObject obj) {
       Set set = (Set) obj;
       session.save(set);
       
    }
 
-   public void updateInSession(Session session, CommonObject obj) {
+   public void update(Session session, CommonObject obj) {
+
       Set set = (Set) obj;
       session.update(set);
       
+   }
+
+   public CommonObject retrieveAccordingKey(Session session, UUID key) {
+      CommonObject output = null;
+      String hql="from com.lia.lego.brickset.Set as s where s.Key=:key";
+      Query query=session.createQuery(hql);
+      query.setString("key", key.toString());
+      
+      List<Set> setList = query.list();
+      if (setList.size() > 0){
+         output = setList.get(0);
+      }
+      return output;
+   }
+
+   public List<CommonObject> retrieve(Session session) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+      String hql="from com.lia.lego.brickset.Set";
+      Query query=session.createQuery(hql);
+
+      List<Set> setList = query.list();
+      for (Set set : setList) {
+         output.add(set);
+      }
+      return output;
    }
 
    public List<String> getThemeNameList() {
@@ -299,4 +325,15 @@ public class SetController implements Controller{
       }
       return output;
    }
+   
+   public List<CommonObject> getSetAccordingThemeInSession(Session session, String themeName, String subThemeName) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+            List setList = session.createQuery("FROM com.lia.lego.brickset.model.Set s where s.Theme = '" + themeName + "' and s.SubTheme = '" + subThemeName + "'").list();
+            for (Iterator iterator = setList.iterator(); iterator.hasNext();){
+               Set set = (Set) iterator.next();
+                  output.add(set);
+            }
+      return output;
+   }
+
 }

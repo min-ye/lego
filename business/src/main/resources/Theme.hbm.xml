@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="com.lia.lego.model">
-   <class name="Theme" table="Theme">
+   <class name="Theme" table="`Theme`">
       <id name="Key" column="`Key`" type="org.hibernate.type.UUIDCharType"></id>
       <property name="Name" column="Name" type="string" length="128"></property>
 

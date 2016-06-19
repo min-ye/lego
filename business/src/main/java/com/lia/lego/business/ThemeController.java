@@ -103,7 +103,7 @@ public class ThemeController implements Controller{
          Session session = null;
          try {
             session = factory.openSession();
-            String hql="from com.lia.lego.Theme as t where t.Key=:key";//使用命名参数，推荐使用，易读。
+            String hql="from com.lia.lego.model.Theme as t where t.Key=:key";
             Query query=session.createQuery(hql);
             query.setString("key", key.toString());
             
@@ -162,23 +162,49 @@ public class ThemeController implements Controller{
       return output;
    }
 
-   public void deleteInSession(Session session, CommonObject obj) {
+   public void delete(Session session, CommonObject obj) {
       Theme theme = (Theme) obj;
       session.delete(theme);
    }
 
-   public void createInSession(Session session, CommonObject obj) {
+   public void create(Session session, CommonObject obj) {
       Theme theme = (Theme) obj;
       session.save(theme);
       
    }
 
-   public void updateInSession(Session session, CommonObject obj) {
+   public void update(Session session, CommonObject obj) {
+
       Theme theme = (Theme) obj;
       session.update(theme);
       
    }
 
+   public CommonObject retrieveAccordingKey(Session session, UUID key) {
+      CommonObject output = null;
+      String hql="from com.lia.lego.model.Theme as t where t.Key=:key";
+      Query query=session.createQuery(hql);
+      query.setString("key", key.toString());
+      
+      List<Theme> themeList = query.list();
+      if (themeList.size() > 0){
+         output = themeList.get(0);
+      }
+      return output;
+   }
+
+   public List<CommonObject> retrieve(Session session) {
+      List<CommonObject> output = new ArrayList<CommonObject>();
+      String hql="from com.lia.lego.model.Theme";
+      Query query=session.createQuery(hql);
+
+      List<Theme> themeList = query.list();
+      for (Theme theme : themeList) {
+         output.add(theme);
+      }
+      return output;
+   }
+   
    public void initialize(){
       try {
          com.lia.lego.brickset.business.SetController setController = new com.lia.lego.brickset.business.SetController();
@@ -194,19 +220,10 @@ public class ThemeController implements Controller{
             Query query = session.createQuery(script);
             query.executeUpdate();
             
-            //script = "delete from SubTheme";
-            //query = session.createQuery(script);
-            //query.executeUpdate();
-            
             for (String themeName : themeNameList) {
                UUID key = UUID.randomUUID();
                Theme theme = new Theme(themeName, key);
-               createInSession(session, theme);
-               //List<String> subThemeNameList = getSubThemeNameList(themeName);
-               //for (String subThemeName : subThemeNameList) {
-               //   UUID subThemeKey = UUID.randomUUID();
-               //   SubTheme subTheme = new SubTheme();
-               //}
+               create(session, theme);
             }
             session.getTransaction().commit();
          }
