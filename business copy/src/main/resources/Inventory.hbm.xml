@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lia.lego.model">
+   <class name="Inventory" table="Inventory">
+      <composite-id>
+         <key-property name="SetKey" column="SetKey" type="org.hibernate.type.UUIDCharType" />
+         <key-property name="BrickKey" column="BrickKey" type="org.hibernate.type.UUIDCharType" />
+      </composite-id>
+      <property name="Quantity" column="Quantity" type="integer"></property>
+
+   </class>
+</hibernate-mapping>

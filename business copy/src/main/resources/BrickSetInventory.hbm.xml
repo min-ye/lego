@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.lia.lego.brickset.model">
+   <class name="Inventory" table="BrickSetInventory">
+      <composite-id>
+         <key-property name="SetNumber" column="SetNumber" type="string" length="16" />
+         <key-property name="PartID" column="PartID" type="string" length="16" />
+      </composite-id>
+      <property name="Quantity" column="Quantity" type="string" length="8"></property>
+      <property name="Colour" column="Colour" type="string" length="128"></property>
+      <property name="Category" column="Category" type="string" length="128"></property>
+      <property name="DesignID" column="DesignID" type="string" length="16"></property>
+      <property name="PartName" column="PartName" type="string" length="128"></property>
+      <property name="ImageURL" column="ImageURL" type="string" length="256"></property>
+      <property name="SetCount" column="SetCount" type="string" length="8"></property>
+   </class>
+</hibernate-mapping>

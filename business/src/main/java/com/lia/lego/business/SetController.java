@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 import com.lia.common.CommonHelper;
 import com.lia.common.CommonObject;
 import com.lia.common.FileHelper;
+import com.lia.common.HibernateHelper;
 import com.lia.common.IOHelper;
 import com.lia.lego.model.Set;
 import com.lia.lego.model.SubTheme;
@@ -20,192 +21,76 @@ import com.lia.lego.model.Theme;
 public class SetController implements Controller{
 
    public void delete(CommonObject obj) {
+      Session session = null;
       try {
-         Configuration config = new Configuration().configure();
-         SessionFactory factory = config.buildSessionFactory();
-         Session session = null;
-         try {
-            session = factory.openSession();
-            Set set = (Set) obj;
-            session.delete(set);
-         }
-         catch (Exception ex) {
-            throw ex;
-         }
-         finally {
-            if (session != null) {
-               if (session.isOpen()) {
-                  session.close();
-               }
-            }
-         }
+         session = HibernateHelper.currentSession();
+         Set set = (Set) obj;
+         session.delete(set);
       }
-      catch (Exception ex){
-         System.out.println(ex.getMessage());
+      finally {
+         HibernateHelper.closeSession();
       }
-      
    }
 
    public void create(CommonObject obj) {
+      Session session = null;
       try {
-         Configuration config = new Configuration().configure();
-         SessionFactory factory = config.buildSessionFactory();
-         Session session = null;
-         try {
-            session = factory.openSession();
-            Set set = (Set) obj;
-            session.save(set);
-         }
-         catch (Exception ex) {
-            throw ex;
-         }
-         finally {
-            if (session != null) {
-               if (session.isOpen()) {
-                  session.close();
-               }
-            }
-         }
+         session = HibernateHelper.currentSession();
+         Set set = (Set) obj;
+         session.save(set);
       }
-      catch (Exception ex){
-         System.out.println(ex.getMessage());
+      finally {
+         HibernateHelper.closeSession();
       }
-      
    }
 
    public void update(CommonObject obj) {
+      Session session = null;
       try {
-         Configuration config = new Configuration().configure();
-         SessionFactory factory = config.buildSessionFactory();
-         Session session = null;
-         try {
-            session = factory.openSession();
-            Set set = (Set) obj;
-            session.update(set);
-         }
-         catch (Exception ex) {
-            throw ex;
-         }
-         finally {
-            if (session != null) {
-               if (session.isOpen()) {
-                  session.close();
-               }
-            }
-         }
+         session = HibernateHelper.currentSession();
+         Set set = (Set) obj;
+         session.update(set);
       }
-      catch (Exception ex){
-         System.out.println(ex.getMessage());
+      finally {
+         HibernateHelper.closeSession();
       }
-      
    }
 
    public CommonObject retrieveAccordingKey(UUID key) {
       CommonObject output = null;
+      Session session = null;
       try {
-         Configuration config = new Configuration().configure();
-         SessionFactory factory = config.buildSessionFactory();
-         Session session = null;
-         try {
-            session = factory.openSession();
-            String hql="from com.lia.lego.model.Set as s where s.Key=:key";
-            Query query=session.createQuery(hql);
-            query.setString("key", key.toString());
+         session = HibernateHelper.currentSession();
+         String hql="from com.lia.lego.Set as s where s.Key=:key";
+         Query query=session.createQuery(hql);
+         query.setString("key", key.toString());
             
-            List<Set> setList = query.list();
-            if (setList.size() > 0){
-               output = setList.get(0);
-            }
-         }
-         catch (Exception ex) {
-            throw ex;
-         }
-         finally {
-            if (session != null) {
-               if (session.isOpen()) {
-                  session.close();
-               }
-            }
+         List<Set> setList = query.list();
+         if (setList.size() > 0){
+            output = setList.get(0);
          }
       }
-      catch (Exception ex){
-         System.out.println(ex.getMessage());
+      finally {
+         HibernateHelper.closeSession();
       }
       return output;
    }
 
    public List<CommonObject> retrieve() {
       List<CommonObject> output = new ArrayList<CommonObject>();
+      Session session = null;
       try {
-         Configuration config = new Configuration().configure();
-         SessionFactory factory = config.buildSessionFactory();
-         Session session = null;
-         try {
-            session = factory.openSession();
-            String hql="from com.lia.lego.model.Set";
-            Query query=session.createQuery(hql);
-            
-            List<Set> setList = query.list();
-            for (Set set : setList) {
-               output.add(set);
-            }
-         }
-         catch (Exception ex) {
-            throw ex;
-         }
-         finally {
-            if (session != null) {
-               if (session.isOpen()) {
-                  session.close();
-               }
-            }
+         session = HibernateHelper.currentSession();
+         String hql="from com.lia.lego.Set";
+         Query query=session.createQuery(hql);
+
+         List<Set> setList = query.list();
+         for (Set set : setList) {
+            output.add(set);
          }
       }
-      catch (Exception ex){
-         System.out.println(ex.getMessage());
-      }
-      return output;
-   }
-
-   public void delete(Session session, CommonObject obj) {
-      Set set = (Set) obj;
-      session.delete(set);
-   }
-
-   public void create(Session session, CommonObject obj) {
-      Set set = (Set) obj;
-      session.save(set);
-      
-   }
-
-   public void update(Session session, CommonObject obj) {
-
-      Set set = (Set) obj;
-      session.update(set);
-      
-   }
-
-   public CommonObject retrieveAccordingKey(Session session, UUID key) {
-      CommonObject output = null;
-      String hql="from com.lia.lego.model.Set as s where s.Key=:key";
-      Query query=session.createQuery(hql);
-      query.setString("key", key.toString());
-      
-      List<Set> setList = query.list();
-      if (setList.size() > 0){
-         output = setList.get(0);
-      }
-      return output;
-   }
-
-   public List<CommonObject> retrieve(Session session) {
-      List<CommonObject> output = new ArrayList<CommonObject>();
-      String hql="from com.lia.lego.model.Set";
-      Query query=session.createQuery(hql);
-
-      List<Set> setList = query.list();
-      for (Set set : setList) {
-         output.add(set);
+      finally {
+         HibernateHelper.closeSession();
       }
       return output;
    }
@@ -219,37 +104,33 @@ public class SetController implements Controller{
          ThemeController themeController = new ThemeController();
          SubThemeController subThemeController = new SubThemeController();
          
-         Configuration config = new Configuration().configure();
-         SessionFactory factory = config.buildSessionFactory();
-         Session session = null;
+         Session session = HibernateHelper.currentSession();
          
-         try {
-            session = factory.openSession();
-            session.beginTransaction();
-            String script = "delete from com.lia.lego.model.Set"; 
-            Query query = session.createQuery(script);
-            query.executeUpdate();
-            List<CommonObject> themeList = themeController.retrieve(session);
-            for (CommonObject themeObject : themeList) {
-               Theme theme = (Theme) themeObject;
-               String themeName = theme.getName();
-               UUID themeKey = theme.getKey();
-               logList.add(String.format("%s,[%s]", themeName, themeKey.toString()));
-               List<CommonObject> subThemeList = subThemeController.getSubThemeAccordingThemeKeyInSession(session, theme.getKey());
-               
-               for (CommonObject subThemeObject : subThemeList) {
-                  SubTheme subTheme = (SubTheme) subThemeObject;
-                  String subThemeName = subTheme.getName();
-                  UUID subThemeKey = subTheme.getKey();
-                  logList.add(String.format("   %s,[%s]", subThemeName, subThemeKey.toString()));
-                  List<CommonObject> setList = setController.getSetAccordingThemeInSession(session, themeName, subThemeName);
-                  count += setList.size();
-                  for (CommonObject setObject : setList) {
-                     com.lia.lego.brickset.model.Set brickSet = (com.lia.lego.brickset.model.Set) setObject;
-                     UUID key = UUID.randomUUID();
-                     
-                     try {
-                        String number = brickSet.getNumber();
+         session.beginTransaction();
+         String script = "delete from com.lia.lego.model.Set"; 
+         Query query = session.createQuery(script);
+         query.executeUpdate();
+         List<CommonObject> themeList = themeController.retrieve();
+         for (CommonObject themeObject : themeList) {
+            Theme theme = (Theme) themeObject;
+            String themeName = theme.getName();
+            UUID themeKey = theme.getKey();
+            logList.add(String.format("%s,[%s]", themeName, themeKey.toString()));
+            List<CommonObject> subThemeList = subThemeController.getSubThemeAccordingThemeKey(theme.getKey());
+
+            for (CommonObject subThemeObject : subThemeList) {
+               SubTheme subTheme = (SubTheme) subThemeObject;
+               String subThemeName = subTheme.getName();
+               UUID subThemeKey = subTheme.getKey();
+               logList.add(String.format("   %s,[%s]", subThemeName, subThemeKey.toString()));
+               List<CommonObject> setList = setController.getSetAccordingTheme(themeName, subThemeName);
+               count += setList.size();
+               for (CommonObject setObject : setList) {
+                  com.lia.lego.brickset.model.Set brickSet = (com.lia.lego.brickset.model.Set) setObject;
+                  UUID key = UUID.randomUUID();
+
+                  try {
+                     String number = brickSet.getNumber();
                      Integer variant = Integer.parseInt(brickSet.getVariant());
                      Short year = Short.parseShort(brickSet.getYear());
                      String name = brickSet.getName();
@@ -276,30 +157,19 @@ public class SetController implements Controller{
                            imageURL,
                            key);
                      session.save(set);
-                     }
-                     catch (Exception ex) {
-                        System.out.println(ex.toString());
-                     }
+                  }
+                  catch (Exception ex) {
+                     System.out.println(ex.toString());
                   }
                }
-               
-            }
-            session.getTransaction().commit();
-         }
-         catch (Exception ex) {
-            throw ex;
-         }
-         finally {
-            if (session != null) {
-               if (session.isOpen()) {
-                  session.close();
-               }
             }
          }
+         session.getTransaction().commit();
       }
-      catch (Exception ex){
-         System.out.println(ex.getMessage());
+      finally {
+         HibernateHelper.closeSession();
       }
+      
       String log = "";
       for (String content: logList) {
          log += content + "\r\n";

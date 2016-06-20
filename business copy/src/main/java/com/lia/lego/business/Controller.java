@@ -13,4 +13,10 @@ public interface Controller {
    public void update(CommonObject obj);
    public CommonObject retrieveAccordingKey(UUID key);
    public List<CommonObject> retrieve();
+   
+   public void delete(Session session, CommonObject obj);
+   public void create(Session session, CommonObject obj);
+   public void update(Session session, CommonObject obj);
+   public CommonObject retrieveAccordingKey(Session session, UUID key);
+   public List<CommonObject> retrieve(Session session);
 }
