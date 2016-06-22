@@ -16,82 +16,46 @@ import com.lia.lego.model.Theme;
 public class ThemeController implements Controller{
 
    public void delete(CommonObject obj) {
-      Session session = null;
-      try {
-         session = HibernateHelper.currentSession();
-         Theme theme = (Theme) obj;
-         session.delete(theme);
-      }
-      finally {
-         HibernateHelper.closeSession();
-      }
+      Theme theme = (Theme) obj;
+      HibernateHelper.currentSession().delete(theme);
    }
 
    public void create(CommonObject obj) {
-      Session session = null;
-      try {
-         session = HibernateHelper.currentSession();
-         Theme theme = (Theme) obj;
-         session.save(theme);
-      }
-      finally {
-         HibernateHelper.closeSession();
-      }
+      Theme theme = (Theme) obj;
+      HibernateHelper.currentSession().save(theme);
    }
 
    public void update(CommonObject obj) {
-      Session session = null;
-      try {
-         session = HibernateHelper.currentSession();
-         Theme theme = (Theme) obj;
-         session.update(theme);
-      }
-      finally {
-         HibernateHelper.closeSession();
-      }
+      Theme theme = (Theme) obj;
+      HibernateHelper.currentSession().update(theme);
    }
 
    public CommonObject retrieveAccordingKey(UUID key) {
       CommonObject output = null;
-      Session session = null;
-      try {
-         session = HibernateHelper.currentSession();
-         String hql="from com.lia.lego.Theme as t where t.Key=:key";
-         Query query=session.createQuery(hql);
-         query.setString("key", key.toString());
+      String hql = "from com.lia.lego.Theme as t where t.Key=:key";
+      Query query = HibernateHelper.currentSession().createQuery(hql);
+      query.setString("", key.toString());
             
-         List<Theme> themeList = query.list();
-         if (themeList.size() > 0){
-            output = themeList.get(0);
-         }
-      }
-      finally {
-         HibernateHelper.closeSession();
+      List<Theme> themeList = query.list();
+      if (themeList.size() > 0){
+         output = themeList.get(0);
       }
       return output;
    }
 
    public List<CommonObject> retrieve() {
       List<CommonObject> output = new ArrayList<CommonObject>();
-      Session session = null;
-      try {
-         session = HibernateHelper.currentSession();
-         String hql="from com.lia.lego.Theme";
-         Query query=session.createQuery(hql);
+      String hql = "from com.lia.lego.Theme";
+      Query query = HibernateHelper.currentSession().createQuery(hql);
 
-         List<Theme> themeList = query.list();
-         for (Theme theme : themeList) {
-            output.add(theme);
-         }
-      }
-      finally {
-         HibernateHelper.closeSession();
+      List<Theme> themeList = query.list();
+      for (Theme theme : themeList) {
+         output.add(theme);
       }
       return output;
    }
    
    public void initialize(){
-      try {
          com.lia.lego.brickset.business.SetController setController = new com.lia.lego.brickset.business.SetController();
          List<String> themeNameList = setController.getThemeNameList();
          Session session = HibernateHelper.currentSession();
@@ -107,9 +71,6 @@ public class ThemeController implements Controller{
             create(theme);
          }
          session.getTransaction().commit();
-      }
-      finally {
-         HibernateHelper.closeSession();
-      }
+      
    }
 }

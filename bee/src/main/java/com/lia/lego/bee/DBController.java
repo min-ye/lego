@@ -61,10 +61,10 @@ public class DBController {
       //subThemeController.initialize();
       //com.lia.lego.business.SetController setController = new com.lia.lego.business.SetController();
       //setController.initialize();
-      com.lia.lego.business.ColorController colorController = new com.lia.lego.business.ColorController();
-      colorController.initialize();
-      com.lia.lego.business.CategoryController categoryController = new com.lia.lego.business.CategoryController();
-      categoryController.initialize();
+      //com.lia.lego.business.ColorController colorController = new com.lia.lego.business.ColorController();
+      //colorController.initialize();
+      //com.lia.lego.business.CategoryController categoryController = new com.lia.lego.business.CategoryController();
+      //categoryController.initialize();
       com.lia.lego.business.BrickController brickController = new com.lia.lego.business.BrickController();
       brickController.initialize();
    }
