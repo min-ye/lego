@@ -30,7 +30,7 @@ public class CategoryController implements Controller{
 
    public CommonObject retrieveAccordingKey(UUID key) {
       CommonObject output = null;
-      String hql = "from com.lia.lego.Category as c where c.Key=:key";
+      String hql = "from com.lia.lego.model.Category as c where c.Key=:key";
       Query query = HibernateHelper.currentSession().createQuery(hql);
       query.setString("key", key.toString());
             
@@ -43,7 +43,7 @@ public class CategoryController implements Controller{
 
    public List<CommonObject> retrieve() {
       List<CommonObject> output = new ArrayList<CommonObject>();
-      String hql = "from com.lia.lego.Category";
+      String hql = "from com.lia.lego.model.Category";
       Query query = HibernateHelper.currentSession().createQuery(hql);
 
       List<Category> categoryList = query.list();

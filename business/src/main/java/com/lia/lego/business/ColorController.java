@@ -30,7 +30,7 @@ public class ColorController implements Controller{
 
    public CommonObject retrieveAccordingKey(UUID key) {
       CommonObject output = null;
-      String hql = "from com.lia.lego.Color as c where c.Key=:key";
+      String hql = "from com.lia.lego.model.Color as c where c.Key=:key";
       Query query = HibernateHelper.currentSession().createQuery(hql);
       query.setString("key", key.toString());
             
@@ -43,7 +43,7 @@ public class ColorController implements Controller{
 
    public List<CommonObject> retrieve() {
       List<CommonObject> output = new ArrayList<CommonObject>();
-      String hql = "from com.lia.lego.Color";
+      String hql = "from com.lia.lego.model.Color";
       Query query = HibernateHelper.currentSession().createQuery(hql);
 
       List<Color> colorList = query.list();

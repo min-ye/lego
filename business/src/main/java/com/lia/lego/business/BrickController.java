@@ -61,7 +61,9 @@ public class BrickController implements Controller{
 
       com.lia.lego.brickset.business.InventoryController inventoryController = new com.lia.lego.brickset.business.InventoryController();
       ColorController colorController = new ColorController();
+      List<CommonObject> colorList = colorController.retrieve();
       CategoryController categoryController = new CategoryController();
+      List<CommonObject> categoryList = categoryController.retrieve();
       List<String[]> brickList = inventoryController.getBrickList();
       Session session = HibernateHelper.currentSession();
       session.beginTransaction();
@@ -75,8 +77,20 @@ public class BrickController implements Controller{
          String imageURL = brickObject[3];
          String colorName = brickObject[4];
          String categoryName = brickObject[5];
-         Color color = (Color) colorController.retrieveAccordingName(colorName);
-         Category category = (Category) categoryController.retrieveAccordingName(categoryName);
+         Color color = null;
+         for(int i = 0; i < colorList.size(); i++)  
+         {  
+             if (colorList.get(i).getPropertyValue("Name").equals(colorName)) {
+                color = (Color)colorList.get(i);
+             }
+         }
+         Category category = null;
+         for(int i = 0; i < categoryList.size(); i++)  
+         {  
+             if (categoryList.get(i).getPropertyValue("Name").equals(categoryName)) {
+                category = (Category)categoryList.get(i);
+             }
+         }  
          if (color == null) {
             throw new Exception("Unknown Color Name:" + colorName);
          }
