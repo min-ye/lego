@@ -99,5 +99,26 @@ public class InventoryController implements Controller{
 
       return output;
    }
+   
+   public List<String[]> getInventoryList() {
+      List<String[]> output = new ArrayList<String[]>();
+      String query = "select i.SetNumber, i.PartID, s.Key as SetKey, b.Key as BrickKey, i.Quantity FROM com.lia.lego.brickset.model.Inventory i ";
+      query += " left join com.lia.lego.model.Set s on (s.Number = i.SetNumber) ";
+      query += " left join com.lia.lego.model.Brick b on (b.ElementID = i.PartID)";
+      List brickList = HibernateHelper.currentSession()
+            .createQuery(query)
+            .list();
+      for (Iterator iterator = brickList.iterator(); iterator.hasNext();) {
+         Object[] inventory = (Object[]) iterator.next();
+         String[] inventoryString = new String[5];
+         for (Integer index = 0; index < 5; index++) {
+            inventoryString[index] = inventory[index].toString();
+         }
+
+         output.add(inventoryString);
+      }
+
+      return output;
+   }
 
 }

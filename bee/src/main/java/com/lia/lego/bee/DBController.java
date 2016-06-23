@@ -65,7 +65,9 @@ public class DBController {
       //colorController.initialize();
       //com.lia.lego.business.CategoryController categoryController = new com.lia.lego.business.CategoryController();
       //categoryController.initialize();
-      com.lia.lego.business.BrickController brickController = new com.lia.lego.business.BrickController();
-      brickController.initialize();
+      //com.lia.lego.business.BrickController brickController = new com.lia.lego.business.BrickController();
+      //brickController.initialize();
+      com.lia.lego.business.InventoryController inventoryController = new com.lia.lego.business.InventoryController();
+      inventoryController.initialize();
    }
 }
