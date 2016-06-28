@@ -38,6 +38,7 @@
       <mapping resource="Category.hbm.xml"/>
       <mapping resource="Color.hbm.xml"/>
       <mapping resource="Inventory.hbm.xml"/>
+      <mapping resource="InventoryMap.hbm.xml"/>
         
    </session-factory>
 </hibernate-configuration>

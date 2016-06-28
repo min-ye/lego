@@ -10,10 +10,12 @@ import org.hibernate.query.Query;
 import com.lia.common.CommonHelper;
 import com.lia.common.CommonObject;
 import com.lia.common.HibernateHelper;
+import com.lia.common.IOHelper;
 import com.lia.lego.model.Brick;
 import com.lia.lego.model.Category;
 import com.lia.lego.model.Color;
 import com.lia.lego.model.Inventory;
+import com.lia.lego.model.Set;
 
 public class InventoryController implements Controller{
 
@@ -60,29 +62,35 @@ public class InventoryController implements Controller{
    public void initialize() throws Exception {
       Integer count = 0;
       List<String> logList = new ArrayList<String>();
-
-      com.lia.lego.brickset.business.InventoryController inventoryController = new com.lia.lego.brickset.business.InventoryController();
+      int index = 0;
       
-      List<String[]> inventoryList = inventoryController.getInventoryList();
+      
+      com.lia.lego.brickset.business.InventoryController inventoryController = new com.lia.lego.brickset.business.InventoryController();
       Session session = HibernateHelper.currentSession();
       session.beginTransaction();
       String script = "delete from com.lia.lego.model.Inventory";
       Query query = session.createQuery(script);
       query.executeUpdate();
-      for (String[] inventoryObject : inventoryList) {
-         UUID setKey = CommonHelper.convertToUUID(inventoryObject[2].toString(),  null);
-         UUID brickKey = CommonHelper.convertToUUID(inventoryObject[3].toString(),  null);
-         Integer quantity = CommonHelper.convertToInteger(inventoryObject[4].toString(), 0);
-         if (setKey == null) {
-            throw new Exception("Unknown set key[" + inventoryObject[0] + "]");
-         }
-         if (brickKey == null) {
-            throw new Exception("Unknown brick key[" + inventoryObject[1] + "]");
-         }
+         List<String[]> inventoryList = inventoryController.getInventoryMapList();
+      
+         for (String[] inventoryObject : inventoryList) {
+            IOHelper.writeLine(String.format("%d", index));
+            index ++;
+            Integer quantity = CommonHelper.convertToInteger(inventoryObject[2].toString(), 0);
+            UUID setKey = CommonHelper.convertToUUID(inventoryObject[3].toString(),  null);
+            UUID brickKey = CommonHelper.convertToUUID(inventoryObject[4].toString(),  null);
+            
+            if (setKey == null) {
+               throw new Exception("Unknown set key[" + inventoryObject[0] + "]");
+            }
+            if (brickKey == null) {
+               throw new Exception("Unknown brick key[" + inventoryObject[1] + "]");
+            }
          
-         Inventory inventory = new Inventory(setKey, brickKey, quantity);
-         session.save(inventory);
-      }
+            Inventory inventory = new Inventory(setKey, brickKey, quantity);
+            session.save(inventory);
+         }
+      
       session.getTransaction().commit();
    }
 }

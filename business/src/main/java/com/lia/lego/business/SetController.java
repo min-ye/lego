@@ -34,7 +34,7 @@ public class SetController implements Controller{
 
    public CommonObject retrieveAccordingKey(UUID key) {
       CommonObject output = null;
-      String hql = "from com.lia.lego.Set as s where s.Key=:key";
+      String hql = "from com.lia.lego.model.Set as s where s.Key=:key";
       Query query = HibernateHelper.currentSession().createQuery(hql);
       query.setString("key", key.toString());
             
@@ -47,7 +47,7 @@ public class SetController implements Controller{
 
    public List<CommonObject> retrieve() {
       List<CommonObject> output = new ArrayList<CommonObject>();
-      String hql = "from com.lia.lego.Set";
+      String hql = "from com.lia.lego.model.Set";
       Query query = HibernateHelper.currentSession().createQuery(hql);
 
       List<Set> setList = query.list();

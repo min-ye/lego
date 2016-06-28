@@ -11,6 +11,10 @@ import com.lia.common.CommonObject;
 import com.lia.common.mysql.FieldModel;
 
 public class Inventory extends CommonObject implements Serializable{
+   /**
+    * 
+    */
+   private static final long serialVersionUID = 1L;
    private UUID _setKey = null;
    private UUID _brickKey = null;
    private Integer _quantity = 0;
