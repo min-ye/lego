@@ -1,0 +1,15 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 2.5em;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 2.5em;
+}
+

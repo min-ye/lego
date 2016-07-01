@@ -1,5 +1,5 @@
 {
    source_url: 'http://brickset.com/sets/year-%d/page-%d',
    source_inventory_url: 'http://brickset.com/export/inventory/%s',
-   target_raw_folder: '/Users/yemin/workspace/lego/raw/'
+   target_raw_folder: 'C:\\Users\\mye\workspace\lego\raw\'
 }
