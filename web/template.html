@@ -11,7 +11,12 @@
    <script src="script/jquery-2.0.0.min.js"></script>
    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
    <style>
-   body { padding-top: 70px; padding-bottom: 70px; }
+   body { padding-top: 70px; }
+   body { padding-bottom: 70px; }
+   footer nav.navbar {
+      margin-bottom: 0px;
+      margin-top: 20px;
+   }
    </style>
    <script type="text/javascript">
       $(function () {
@@ -56,89 +61,82 @@
                <ul class="nav navbar-nav navbar-right">
                   <li><a href="#">US</a></li>
                </ul>
-            </div><!-- /.navbar-collapse -->
-         </div><!-- /.container-fluid -->
+            </div>
+         </div>
       </nav>
    </header>
-   <div class="container">
-<div class="row">
-  <div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
-<div class="col-md-9"><div class="list-group">
-  <a href="#" class="list-group-item">
-    <h4 class="list-group-item-heading">List group item heading</h4>
-    <p class="list-group-item-text">...</p>
-  </a>
-</div></div>
 
-  
+   <div class="container">
+      <div class="panel panel-default">
+         <div class="panel-heading">Panel heading without title</div>
+         <div class="panel-body">
+            <div class="btn-group">
+  <button type="button" class="btn btn-success">Action</button>
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
 </div>
+         </div>
+      </div>
+      <div class="panel panel-primary">
+         <div class="list-group">
+            <a href="#" class="list-group-item">
+               <h4 class="list-group-item-heading">List group item heading</h4>
+               <p class="list-group-item-text">...</p>
+            </a>
+         
+            <a href="#" class="list-group-item">
+               <h4 class="list-group-item-heading">List group item heading</h4>
+               <p class="list-group-item-text">...</p>
+            </a>
+         
+            <a href="#" class="list-group-item">
+               <h4 class="list-group-item-heading">List group item heading</h4>
+               <p class="list-group-item-text">...</p>
+            </a>
+
+            <a href="#" class="list-group-item">
+               <h4 class="list-group-item-heading">List group item heading</h4>
+               <p class="list-group-item-text">...</p>
+            </a>
+
+            <a href="#" class="list-group-item">
+               <h4 class="list-group-item-heading">List group item heading</h4>
+               <p class="list-group-item-text">...</p>
+            </a>
+         </div>
+      </div>
    </div>
 
    <footer class="container navbar-fixed-bottom">
-      <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default">Left</button>
-  <button type="button" class="btn btn-default">Middle</button>
-  <button type="button" class="btn btn-default">Right</button>
-</div>
+      <nav class="navbar navbar-default ">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+               <p class="navbar-text">Signed in as Mark Otto</p>
+               <div class="btn-group navbar-right" role="group" aria-label="..." style="float: right; margin-right: 1em;">
+                  <button type="button" class="btn btn-default navbar-btn">Left</button>
+                  <button type="button" class="btn btn-default navbar-btn">Middle</button>
+                  <button type="button" class="btn btn-default navbar-btn">Right</button>
+               </div>
+            </div>
+         </div>
+      </nav>
    </footer>
 </body>
 </html>
