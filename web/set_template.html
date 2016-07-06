@@ -6,17 +6,9 @@
    <title></title>
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0;" />
    
-   <link href="css/jquery.mobile.custom.structure.css" rel="stylesheet" />
-   <link href="css/jquery.mobile.custom.theme.css" rel="stylesheet" />
-
    <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
    <link href="bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
-   
-   
    <script src="script/jquery-2.2.3.min.js"></script>
-
-   <script src="script/jquery.mobile.custom.js"></script>
-
    <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
 
    <style>
@@ -79,7 +71,7 @@
       <ul class="list-group">
       <li class="list-group-item">
       <div class="row">
-         <div class="col-lg-12">
+         <div class="col-lg-3">
             <div class="input-group">
                <input type="text" class="form-control" placeholder="Search for...">
                <span class="input-group-btn">
@@ -90,29 +82,19 @@
       </div>
       </li>
       <li class="list-group-item">
+      <p>
+<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Link with href
+</a></p>
 
-      <div class="row">
-         <div class="col-lg-6">
-            <a href="#popupMenu" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a">Actions...</a>
-            <div data-role="popup" id="popupMenu" data-theme="b">
-               <ul data-role="listview" data-inset="true" style="min-width:210px;">
-                  <li data-role="list-divider">Choose an action</li>
-                  <li><a href="#">View details</a></li>
-                  <li><a href="#">Edit</a></li>
-                  <li><a href="#">Disable</a></li>
-                  <li><a href="#">Delete</a></li>
-               </ul>
-            </div>
-         </div><!-- /.col-lg-6 -->
-         <div class="col-lg-6">
-            <div class="input-group">
-               <input type="text" class="form-control" placeholder="Search for...">
-               <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Go!</button>
-               </span>
-            </div><!-- /input-group -->
-         </div><!-- /.col-lg-6 -->
-      </div>
+<div class="collapse" id="collapseExample">
+  <ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">14</span>
+    Cras justo odio
+  </li>
+</ul>
+</div>
       </li>
    </div>
 
