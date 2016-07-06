@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta charset="utf-8">
+   <title></title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maxium-scale=1.0, user-scalable=0;" />
+   
+   
+<link href="css/jquery.mobile-1.4.5.css" rel="stylesheet" />
+
+   <link href="bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+   <link href="bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+   
+   <script src="script/jquery-2.2.3.min.js"></script>
+
+   <script src="script/jquery.mobile-1.4.5.min.js"></script>
+
+   <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+
+   <style>
+      
+   </style>
+   <script type="text/javascript">
+      $(function () {
+         
+      });
+   </script>
+</head>
+<body>
+<div data-role="page">
+      <div data-role="header" data-position="fixed" data-fullscreen="false">
+         <a href="index.html">Home</a>
+         <h1>LEGO Library</h1>
+         <a href="#slide-panel" class="ui-btn-right" data-icon="gear">SETTINGS</a>
+      </div>
+      <div data-role="content">
+         <ul data-role="listview" data-inset="true" data-divider-theme="a">
+            <li data-role="list-divider">SET</li>
+            <li><a href="set_year.html" data-ajax="false"><h2>Year</h2></a></li>
+            <li><a href="set_theme.html" data-ajax="false"><h2>Theme</h2></a></li>
+            <li><a href="set_list.html?type=fulltext" data-ajax="false"><h2>Full Text Search</h2></a></li>
+         <li data-role="list-divider">BRICK</li>
+            <li><a href="brick_category.html" data-ajax="false"><h2>Category</h2></a></li>
+            <li><a href="brick_color.html" data-ajax="false"><h2>Color</h2></a></li>
+            <li><a href="brick_list.html?type=element" data-ajax="false"><h2>Element ID</h2></a></li>
+            <li><a href="brick_list.html?type=design" data-ajax="false"><h2>Design ID</h2></a></li>
+            <li><a href="brick_list.html?type=fulltext" data-ajax="false"><h2>Full Text Search</h2></a></li>
+         </ul>
+      </div>
+      <div data-role="panel" id="slide-panel">
+         <h2>panel</h2>
+         <a href="slide-panel" data-rel="close" data-role="button">CLOSE</a>
+      </div>
+   </div>
+</body>
+</html>
